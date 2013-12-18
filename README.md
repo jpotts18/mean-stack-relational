@@ -1,4 +1,4 @@
-Mean Stack Relational
+MEAN Stack Relational
 =====================
 
 MEAN (**MySQL, Express, Angular, Node) - A Simple, Scalable and Easy starting point for javascript web development - utilizing many of the best practices we've found on the way.
