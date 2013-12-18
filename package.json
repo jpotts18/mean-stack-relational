@@ -20,7 +20,10 @@
     "dependencies": {
         "express": "latest",
         "jade": "latest",
-        "mongoose": "latest",
+        "sequelize": "latest",
+        "mysql":"latest",
+        "pg":"latest",
+        "sqlite3":"latest",
         "connect-mongo": "latest",
         "connect-flash": "latest",
         "crypto": "latest",
