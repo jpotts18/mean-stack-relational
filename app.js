@@ -1,10 +1,10 @@
 /**
  * Module dependencies.
  */
-var express = require('express'),
-    fs = require('fs'),
-    passport = require('passport'),
-    logger = require('mean-logger');
+var express     = require('express');
+var fs          = require('fs');
+var passport    = require('passport');
+var logger      = require('mean-logger');
 
 /**
  * Main application entry file.
@@ -12,16 +12,21 @@ var express = require('express'),
  */
 
 //Load configurations
-//if test env, load example file
-var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development',
-    config = require('./config/config'),
-    auth = require('./config/middlewares/authorization'),
-    mongoose = require('mongoose');
 
-//Bootstrap db connection
-var db = mongoose.connect(config.db);
+var env         = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+var config      = require('./config/config');
+var auth        = require('./config/middlewares/authorization');
+var Sequelize   = require('sequelize');
+
+// Create your relational database of choice
+
+var db = new Sequelize(config.db.name, config.db.username, config.db.password, {
+    dialect : 'sqlite',
+    storage : config.db.storage
+});
 
 //Bootstrap models
+
 var models_path = __dirname + '/app/models';
 var walk = function(path) {
     fs.readdirSync(path).forEach(function(file) {
@@ -29,7 +34,7 @@ var walk = function(path) {
         var stat = fs.statSync(newPath);
         if (stat.isFile()) {
             if (/(.*)\.(js$|coffee$)/.test(file)) {
-                require(newPath);
+                require(newPath)(db);
             }
         } else if (stat.isDirectory()) {
             walk(newPath);
