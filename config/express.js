@@ -7,7 +7,7 @@ var express = require('express'),
     helpers = require('view-helpers'),
     config = require('./config');
 
-module.exports = function(app, passport, db) {
+module.init = function(app, passport, db) {
     app.set('showStackError', true);    
     
     //Prettify HTML

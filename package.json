@@ -20,10 +20,7 @@
   "dependencies": {
     "express": "latest",
     "jade": "latest",
-    "sequelize": "latest",
-    "mysql": "latest",
-    "pg": "latest",
-    "sqlite3": "latest",
+    "sequelize-sqlite":"latest",
     "connect-mongo": "latest",
     "connect-flash": "latest",
     "crypto": "latest",
@@ -36,13 +33,13 @@
     "underscore": "latest",
     "async": "latest",
     "view-helpers": "latest",
-    "mean-logger": "latest",
     "forever": "latest",
     "bower": "latest",
     "grunt": "latest",
     "grunt-cli": "latest",
     "grunt-env": "latest",
-    "lodash": "latest"
+    "lodash": "latest",
+    "winston": "latest"
   },
   "devDependencies": {
     "supertest": "latest",

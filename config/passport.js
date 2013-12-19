@@ -1,14 +1,12 @@
-var mongoose = require('mongoose'),
-    LocalStrategy = require('passport-local').Strategy,
-    TwitterStrategy = require('passport-twitter').Strategy,
-    FacebookStrategy = require('passport-facebook').Strategy,
-    GitHubStrategy = require('passport-github').Strategy,
-    GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
-    User = mongoose.model('User'),
-    config = require('./config');
+var LocalStrategy = require('passport-local').Strategy;
+var TwitterStrategy = require('passport-twitter').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
+var GitHubStrategy = require('passport-github').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var config = require('./config');
 
 
-module.exports = function(passport) {
+module.init = function(passport) {
     //Serialize sessions
     passport.serializeUser(function(user, done) {
         done(null, user.id);

@@ -1,9 +1,9 @@
 module.exports = {
     db: {
         name: "mean-stack-relational",
-        password: "",
-        username: "",
-        storage: "development.db"
+        password: "$uper$ecret",
+        username: "jpotts18",
+        storage: "./dev.db"
     },
     app: {
         name: "MEAN - A Modern Stack - Development"
