@@ -1,10 +1,9 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-    Article = mongoose.model('Article'),
-    _ = require('underscore');
-
+var _ = require('underscore');
+var db = require('../../config/sequelize');
+var Article = db.Article;
 
 /**
  * Find article by id

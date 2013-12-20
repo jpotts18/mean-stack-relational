@@ -1,7 +1,11 @@
 
+/**
+	* User Model
+	*/
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define("User", {
+
+	var User = sequelize.define("User", {
 		name: {
 			type: DataTypes.STRING,
 			validate: {
@@ -28,5 +32,7 @@ module.exports = function(sequelize, DataTypes) {
 		twitter: DataTypes.STRING,
 		github: DataTypes.STRING,
 		google: DataTypes.STRING,
-  });
-}
+	});
+
+	return User;
+};

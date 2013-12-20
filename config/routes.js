@@ -1,6 +1,13 @@
-module.init = function(app, passport, auth) {
+
+var users = require('../app/controllers/users');
+var articles = require('../app/controllers/articles');
+var index = require('../app/controllers/index');
+
+exports.init = function(app, passport, auth) {
+
+    console.log('Initializing Routes');
+
     //User Routes
-    var users = require('../app/controllers/users');
     app.get('/signin', users.signin);
     app.get('/signup', users.signup);
     app.get('/signout', users.signout);
@@ -60,7 +67,6 @@ module.init = function(app, passport, auth) {
     app.param('userId', users.user);
 
     //Article Routes
-    var articles = require('../app/controllers/articles');
     app.get('/articles', articles.all);
     app.post('/articles', auth.requiresLogin, articles.create);
     app.get('/articles/:articleId', articles.show);
@@ -71,7 +77,6 @@ module.init = function(app, passport, auth) {
     app.param('articleId', articles.article);
 
     //Home route
-    var index = require('../app/controllers/index');
     app.get('/', index.render);
 
 };

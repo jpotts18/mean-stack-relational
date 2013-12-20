@@ -1,8 +1,8 @@
 module.exports = {
     db: {
-        name: "mean-stack-relational",
-        password: "$uper$ecret",
-        username: "jpotts18",
+        name: "",
+        password: "",
+        username: "",
         storage: "./dev.db"
     },
     app: {
