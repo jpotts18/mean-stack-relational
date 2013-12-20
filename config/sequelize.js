@@ -1,6 +1,6 @@
 var fs        = require('fs');
 var path      = require('path');
-var Sequelize = require('sequelize-sqlite').sequelize;
+var Sequelize = require('sequelize-mysql').sequelize;
 var _         = require('lodash');
 var config    = require('./config');
 var db        = {};
@@ -10,7 +10,7 @@ console.log('Initializing Sequelize');
 
 // create your instance of sequelize
 var sequelize = new Sequelize(config.db.name, config.db.username, config.db.password, {
-  dialect: 'sqlite',
+  dialect: 'mysql',
   storage: config.db.storage
 });
 
@@ -31,10 +31,6 @@ Object.keys(db).forEach(function(modelName) {
   if (db[modelName].options.hasOwnProperty('associate')) {
     db[modelName].options.associate(db)
   }
-});
-
-db.User.create({username: 'jpotts18'}).success(function(user){
-  console.log(user.values);
 });
 
 // Synchronizing any model changes with database. 

@@ -5,26 +5,10 @@
 
 module.exports = function(sequelize, DataTypes) {
 
-	var User = sequelize.define("User", {
-		name: {
-			type: DataTypes.STRING,
-			validate: {
-				isAlpha: true
-			}
-		},
-		email: {
-			type: DataTypes.STRING,
-			validate: {
-				isEmail: true
-			}
-		},
-		username: {
-			type: DataTypes.STRING,
-			validate: {
-				// username must be between 3 and 15 chararacters
-				len: [3,15]
-			}
-		},
+	var User = sequelize.define('User', {
+		name: DataTypes.STRING,
+		email: DataTypes.STRING,
+		username: DataTypes.STRING,
 		hashed_password: DataTypes.STRING,
 		provider: DataTypes.STRING,
 		salt: DataTypes.STRING, 

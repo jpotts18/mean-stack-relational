@@ -20,7 +20,7 @@
   "dependencies": {
     "express": "latest",
     "jade": "latest",
-    "sequelize-sqlite":"latest",
+    "sequelize-sqlite": "latest",
     "connect-mongo": "latest",
     "connect-flash": "latest",
     "crypto": "latest",
@@ -39,7 +39,8 @@
     "grunt-cli": "latest",
     "grunt-env": "latest",
     "lodash": "latest",
-    "winston": "latest"
+    "winston": "latest",
+    "sequelize-mysql": "latest"
   },
   "devDependencies": {
     "supertest": "latest",

@@ -20,10 +20,10 @@ var passport        = require('./config/passport');
 var app = express();
 
 //Initialize Express
-require('./config/express')(app, passport);
+// require('./config/express')(app, passport);
 
 //Initialize Routes
-require('./config/routes').init(app, passport, auth);
+// require('./config/routes').init(app, passport, auth);
 
 //Start the app by listening on <port>
 var port = process.env.PORT || config.port;

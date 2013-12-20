@@ -1,12 +1,11 @@
 module.exports = {
     db: {
-        name: "",
+        name: "mean_relational",
         password: "",
-        username: "",
-        storage: "./dev.db"
+        username: "root",
     },
     app: {
-        name: "MEAN - A Modern Stack - Development"
+        name: "M*EAN - A Modern Stack - Development"
     },
     facebook: {
         clientID: "APP_ID",
