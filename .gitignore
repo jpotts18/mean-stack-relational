@@ -17,7 +17,7 @@ npm-debug.log
 node_modules
 
 # From Mean Stack
-
+bower_components/
 .DS_Store
 .nodemonignore
 .sass-cache/

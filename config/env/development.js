@@ -1,5 +1,10 @@
 module.exports = {
-    db: "mongodb://localhost/mean-dev",
+    db: {
+        name: "",
+        password: "",
+        username: "",
+        storage: "./dev.db"
+    },
     app: {
         name: "MEAN - A Modern Stack - Development"
     },

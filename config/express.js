@@ -1,13 +1,15 @@
 /**
  * Module dependencies.
  */
-var express = require('express'),
-    mongoStore = require('connect-mongo')(express),
-    flash = require('connect-flash'),
-    helpers = require('view-helpers'),
-    config = require('./config');
+var express = require('express');
+var flash = require('connect-flash');
+var helpers = require('view-helpers');
+var config = require('./config');
 
-module.exports = function(app, passport, db) {
+module.exports = function(app, passport) {
+
+    console.log('Initializing Express');
+
     app.set('showStackError', true);    
     
     //Prettify HTML
@@ -48,11 +50,7 @@ module.exports = function(app, passport, db) {
 
         //express/mongo session storage
         app.use(express.session({
-            secret: 'MEAN',
-            store: new mongoStore({
-                db: db.connection.db,
-                collection: 'sessions'
-            })
+            secret: 'mean-stack-relational',
         }));
 
         //connect flash for flash messages
