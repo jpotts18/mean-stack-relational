@@ -39,7 +39,7 @@ sequelize
   .sync({force: true})
   .complete(function(err){
     if(err) console.log("An error occured %j",err);
-    else console.log("Database Dropped and Synchronized");
+    else console.log("Database dropped and synchronized");
 });
  
 // assign the sequelize variables to the db object and returning the db. 

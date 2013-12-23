@@ -48,38 +48,26 @@ exports.session = function(req, res) {
  * Create user
  */
 exports.create = function(req, res) {
-    
     var message = null;
-    req.body.provider = 'local';
-    db.User.create(req.body).success(function(user){
-        console.log(user.values);
-        req.logIn(user, function(err){
-            if(err) return next(err);
-            return res.redirect('/');
-        });
+
+    var user = db.User.build(req.body);
+
+    user.provider = 'local';
+    user.salt = user.makeSalt();
+    user.hashedPassword = user.encryptPassword(req.body.password, user.salt);
+    console.log('New User: ' + user.username + ' ' + user.email + ' ' + user.email + ' ' + user.createdAt);
+    
+    user.save().success(function(){
+      req.login(user, function(err){
+        if(err) return next(err);
+        res.redirect('/');
+      });
+    }).error(function(err){
+      res.render('users/signup',{
+          message: message,
+          user: user
+      });
     });
-
-    // user.save(function(err) {
-    //     if (err) {
-    //         switch(err.code){
-    //             case 11000:
-    //             case 11001:
-    //                 message = 'Username already exists';
-    //                 break;
-    //             default: 
-    //                 message = 'Please fill all the required fields';
-    //         }
-
-    //         return res.render('users/signup', {
-    //             message: message,
-    //             user: user
-    //         });
-    //     }
-    //     req.logIn(user, function(err) {
-    //         if (err) return next(err);
-    //         return res.redirect('/');
-    //     });
-    // });
 };
 
 /**
@@ -93,14 +81,11 @@ exports.me = function(req, res) {
  * Find user by id
  */
 exports.user = function(req, res, next, id) {
-    // User
-    //     .findOne({
-    //         _id: id
-    //     })
-    //     .exec(function(err, user) {
-    //         if (err) return next(err);
-    //         if (!user) return next(new Error('Failed to load User ' + id));
-    //         req.profile = user;
-    //         next();
-    //     });
+    User.find({where : { id: id }}).success(function(user){
+      if (!user) return next(new Error('Failed to load User ' + id));
+      req.profile = user;
+      next();
+    }).error(function(err){
+      next(err);
+    });
 };

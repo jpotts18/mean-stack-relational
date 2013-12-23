@@ -1,7 +1,7 @@
 
-var users = require('../app/controllers/users');
-var articles = require('../app/controllers/articles');
-var index = require('../app/controllers/index');
+var users       = require('../app/controllers/users');
+var articles    = require('../app/controllers/articles');
+var index       = require('../app/controllers/index');
 
 exports.init = function(app, passport, auth) {
 

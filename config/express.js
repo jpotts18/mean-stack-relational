@@ -49,9 +49,7 @@ module.exports = function(app, passport) {
         app.use(express.methodOverride());
 
         //express/mongo session storage
-        app.use(express.session({
-            secret: 'mean-stack-relational',
-        }));
+        app.use(express.session({ secret: '$uper$ecret$e$$ionKey'}));
 
         //connect flash for flash messages
         app.use(flash());

@@ -1,12 +1,12 @@
 {
-  "name": "mean",
-  "description": "MEAN - A Modern Stack: MongoDB, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).",
+  "name": "mean-stack-relational",
+  "description": "M*EAN - A Modern Stack: MySQL, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).",
   "version": "0.1.0",
   "private": false,
-  "author": "Amos Haviv",
+  "author": "Jeff Potter",
   "repository": {
     "type": "git",
-    "url": "https://github.com/linnovate/mean.git"
+    "url": "https://github.com/jpotts18/mean-stack-relational.git"
   },
   "engines": {
     "node": "0.10.x",

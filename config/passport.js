@@ -9,7 +9,6 @@ var LocalStrategy = require('passport-local').Strategy;
 // var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var config = require('./config');
 var db = require('./sequelize');
-var User = db.User;
 
 //Serialize sessions
 passport.serializeUser(function(user, done) {
@@ -17,9 +16,12 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-  User.find({where: {id : id}}, function(err, user){
-    done(err, user);
-  });
+    db.User.find({where: {id: id}}).success(function(user){
+        console.log('Session: ' + user.id + ' ' + user.username + ' ' + user.email);
+        done(null, user);
+    }).error(function(err){
+        done(err, null);
+    });
 });
 
 //Use local strategy
@@ -28,23 +30,13 @@ passport.use(new LocalStrategy({
     passwordField: 'password'
   },
   function(email, password, done) {
-    User.find(
-        { where: { email: email }
-    }, function(err, user) {
-      if (err) {
-        return done(err);
-      }
-      if (!user) {
-        return done(null, false, {
-          message: 'Unknown user'
-        });
-      }
-      if (!user.authenticate(password)) {
-        return done(null, false, {
-          message: 'Invalid password'
-        });
-      }
+    db.User.find({ where: { email: email }}).success(function(user) {
+      if (!user) done(null, false, { message: 'Unknown user' });
+      if (!user.authenticate(password)) done(null, false, { message: 'Invalid password'});
+      console.log('User Signin: ' + user.id + ' ' + user.username + ' ' + user.email);
       return done(null, user);
+    }).error(function(err){
+      return done(err);
     });
   }
 ));
