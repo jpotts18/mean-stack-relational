@@ -28,8 +28,6 @@
     "passport-local": "latest",
     "passport-facebook": "latest",
     "passport-twitter": "latest",
-    "passport-github": "latest",
-    "passport-google-oauth": "latest",
     "underscore": "latest",
     "async": "latest",
     "view-helpers": "latest",
@@ -40,7 +38,8 @@
     "grunt-env": "latest",
     "lodash": "latest",
     "winston": "latest",
-    "sequelize-mysql": "latest"
+    "sequelize-mysql": "latest",
+    "passport-google": "latest"
   },
   "devDependencies": {
     "supertest": "latest",

@@ -25,3 +25,5 @@ node_modules/
 public/lib
 test/coverage/
 migrations/
+
+*.local

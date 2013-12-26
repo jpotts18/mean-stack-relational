@@ -33,6 +33,7 @@ exports.signup = function(req, res) {
  * Logout
  */
 exports.signout = function(req, res) {
+    console.log('Logout: { id: ' + req.user.id + ', username: ' + req.user.username + '}');
     req.logout();
     res.redirect('/');
 };
@@ -55,7 +56,7 @@ exports.create = function(req, res) {
     user.provider = 'local';
     user.salt = user.makeSalt();
     user.hashedPassword = user.encryptPassword(req.body.password, user.salt);
-    console.log('New User: ' + user.username + ' ' + user.email + ' ' + user.email + ' ' + user.createdAt);
+    console.log('New User (local) : { id: ' + user.id + ' username: ' + user.username + ' }');
     
     user.save().success(function(){
       req.login(user, function(err){
