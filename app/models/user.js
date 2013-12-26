@@ -25,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
 			google: DataTypes.STRING,
 		},
 		{
-			instanceMethods : {
+			instanceMethods: {
 				makeSalt: function() {
 					return crypto.randomBytes(16).toString('base64'); 
 				},
@@ -37,6 +37,9 @@ module.exports = function(sequelize, DataTypes) {
 					salt = new Buffer(salt, 'base64');
 					return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
 				}
+			},
+			associate: function(models) {
+				User.hasMany(models.Article);
 			}
 		}
 	);

@@ -30,12 +30,16 @@ passport.use(new LocalStrategy({
   },
   function(email, password, done) {
     db.User.find({ where: { email: email }}).success(function(user) {
-      if (!user) done(null, false, { message: 'Unknown user' });
-      if (!user.authenticate(password)) done(null, false, { message: 'Invalid password'});
+      if (!user) {
+        done(null, false, { message: 'Unknown user' });
+      }
+      if (!user.authenticate(password)) {
+        done(null, false, { message: 'Invalid password'});
+      }
       console.log('Login (local) : { id: ' + user.id + ', username: ' + user.username + ' }');
-      return done(null, user);
+      done(null, user);
     }).error(function(err){
-      return done(err);
+      done(err);
     });
   }
 ));
