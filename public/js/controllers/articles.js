@@ -6,8 +6,10 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
             title: this.title,
             content: this.content
         });
+
         article.$save(function(response) {
-            $location.path("articles/" + response._id);
+            console.log(response);
+            $location.path("articles/" + response.id);
         });
 
         this.title = "";
@@ -38,7 +40,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
         article.updated.push(new Date().getTime());
 
         article.$update(function() {
-            $location.path('articles/' + article._id);
+            $location.path('articles/' + article.id);
         });
     };
 

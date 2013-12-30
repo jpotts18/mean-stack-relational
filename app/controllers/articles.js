@@ -1,19 +1,24 @@
 /**
  * Module dependencies.
  */
-var _ = require('underscore');
 var db = require('../../config/sequelize');
-var Article = db.Article;
 
 /**
  * Find article by id
+ * Note: This is called every time that the parameter :articleId is used in a URL. 
+ * Its purpose is to preload the article on the req object then call the next function. 
  */
 exports.article = function(req, res, next, id) {
-    Article.load(id, function(err, article) {
-        if (err) return next(err);
-        if (!article) return next(new Error('Failed to load article ' + id));
-        req.article = article;
-        next();
+    console.log('id => ' + id);
+    db.Article.find({ where: {id: id}, include: [db.User]}).success(function(article){
+        if(!article) {
+            return next(new Error('Failed to load article ' + id));
+        } else {
+            req.article = article;
+            return next();            
+        }
+    }).error(function(err){
+        return next(err);
     });
 };
 
@@ -21,18 +26,20 @@ exports.article = function(req, res, next, id) {
  * Create a article
  */
 exports.create = function(req, res) {
-    var article = new Article(req.body);
-    article.user = req.user;
-
-    article.save(function(err) {
-        if (err) {
-            return res.send('users/signup', {
-                errors: err.errors,
-                article: article
-            });
+    // augment the article by adding the UserId
+    req.body.UserId = req.user.id;
+    // save and return and instance of article on the res object. 
+    db.Article.create(req.body).success(function(article){
+        if(!article){
+            return res.send('users/signup', {errors: err});
         } else {
-            res.jsonp(article);
+            return res.jsonp(article);
         }
+    }).error(function(err){
+        return res.send('users/signup', { 
+            errors: err,
+            status: 500
+        });
     });
 };
 
@@ -40,12 +47,20 @@ exports.create = function(req, res) {
  * Update a article
  */
 exports.update = function(req, res) {
+
+    // create a new variable to hold the article that was placed on the req object.
     var article = req.article;
 
-    article = _.extend(article, req.body);
-
-    article.save(function(err) {
-        res.jsonp(article);
+    article.updateAttributes({
+        title: req.body.title,
+        content: req.body.content
+    }).success(function(a){
+        return res.jsonp(a);
+    }).error(function(err){
+        return res.render('error', {
+            error: err, 
+            status: 500
+        });
     });
 };
 
@@ -53,16 +68,17 @@ exports.update = function(req, res) {
  * Delete an article
  */
 exports.destroy = function(req, res) {
+
+    // create a new variable to hold the article that was placed on the req object.
     var article = req.article;
 
-    article.remove(function(err) {
-        if (err) {
-            res.render('error', {
-                status: 500
-            });
-        } else {
-            res.jsonp(article);
-        }
+    article.destroy().success(function(){
+        return res.jsonp(article);
+    }).error(function(err){
+        return res.render('error', {
+            error: err,
+            status: 500
+        });
     });
 };
 
@@ -70,20 +86,21 @@ exports.destroy = function(req, res) {
  * Show an article
  */
 exports.show = function(req, res) {
-    res.jsonp(req.article);
+    // Sending down the article that was just preloaded by the articles.article function
+    // and saves article on the req object.
+    return res.jsonp(req.article);
 };
 
 /**
  * List of Articles
  */
 exports.all = function(req, res) {
-    Article.find().sort('-created').populate('user', 'name username').exec(function(err, articles) {
-        if (err) {
-            res.render('error', {
-                status: 500
-            });
-        } else {
-            res.jsonp(articles);
-        }
+    db.Article.findAll({include: [db.User]}).success(function(articles){
+        return res.jsonp(articles);
+    }).error(function(err){
+        return res.render('error', {
+            error: err,
+            status: 500
+        });
     });
 };

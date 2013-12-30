@@ -32,12 +32,12 @@ passport.use(new LocalStrategy({
     db.User.find({ where: { email: email }}).success(function(user) {
       if (!user) {
         done(null, false, { message: 'Unknown user' });
-      }
-      if (!user.authenticate(password)) {
+      } else if (!user.authenticate(password)) {
         done(null, false, { message: 'Invalid password'});
+      } else {
+        console.log('Login (local) : { id: ' + user.id + ', username: ' + user.username + ' }');
+        done(null, user);
       }
-      console.log('Login (local) : { id: ' + user.id + ', username: ' + user.username + ' }');
-      done(null, user);
     }).error(function(err){
       done(err);
     });
@@ -83,7 +83,7 @@ passport.use(new FacebookStrategy({
     },
     function(accessToken, refreshToken, profile, done) {
 
-        db.User.find({where : {id: profile.id}}).success(function(user){
+        db.User.find({where : {facebookUserId: profile.id}}).success(function(user){
             if(!user){
                 db.User.create({
                     name: profile.displayName,
@@ -96,8 +96,8 @@ passport.use(new FacebookStrategy({
                     done(null, u);
                 })
             } else {
-                console.log('Login (facebook) : { id: ' + u.id + ', username: ' + u.username + ' }');
-                done(null, u);
+                console.log('Login (facebook) : { id: ' + user.id + ', username: ' + user.username + ' }');
+                done(null, user);
             }
         }).error(function(err){
             done(err, null);

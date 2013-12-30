@@ -5,7 +5,6 @@ var _         = require('lodash');
 var config    = require('./config');
 var db        = {};
 
-
 console.log('Initializing Sequelize');
 
 // create your instance of sequelize
@@ -14,7 +13,7 @@ var sequelize = new Sequelize(config.db.name, config.db.username, config.db.pass
   storage: config.db.storage
 });
 
-// loop through all files ignoring hidden files and this file
+// loop through all files in models directory ignoring hidden files and this file
 fs.readdirSync(config.modelsDir)
   .filter(function(file) {
     return (file.indexOf('.') !== 0) && (file !== 'index.js')

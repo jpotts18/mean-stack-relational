@@ -16,13 +16,11 @@ module.exports = function(sequelize, DataTypes) {
 			provider: DataTypes.STRING,
 			salt: DataTypes.STRING, 
 			facebookUserId: DataTypes.INTEGER,
-			facebook: DataTypes.STRING,
 			twitterUserId: DataTypes.INTEGER,
 			twitterKey: DataTypes.STRING,
 			twitterSecret: DataTypes.STRING,
 			github: DataTypes.STRING,
-			openId: DataTypes.STRING,
-			google: DataTypes.STRING,
+			openId: DataTypes.STRING
 		},
 		{
 			instanceMethods: {

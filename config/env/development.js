@@ -5,26 +5,20 @@ module.exports = {
         username: "root",
     },
     app: {
-        name: "M*EAN - A Modern Stack - Development"
+        name: "M*EAN Stack - Development"
     },
     facebook: {
-        clientID: "APP_ID",
-        clientSecret: "APP_SECRET",
+        clientID: "489217974520388",
+        clientSecret: "454a6216c3b40c349793472ea6796b7d",
         callbackURL: "http://localhost:3000/auth/facebook/callback"
     },
     twitter: {
-        clientID: "CONSUMER_KEY",
-        clientSecret: "CONSUMER_SECRET",
+        clientID: "ADE2wj6FbWgmWsxj7Si0A",
+        clientSecret: "MCNRKunL1MONCq9cfwhTPJc0erHlYee1R3qKoQulok",
         callbackURL: "http://localhost:3000/auth/twitter/callback"
     },
-    github: {
-        clientID: "APP_ID",
-        clientSecret: "APP_SECRET",
-        callbackURL: "http://localhost:3000/auth/github/callback"
-    },
     google: {
-        clientID: "APP_ID",
-        clientSecret: "APP_SECRET",
+        realm: "http://localhost:3000/",
         callbackURL: "http://localhost:3000/auth/google/callback"
     }
 }
