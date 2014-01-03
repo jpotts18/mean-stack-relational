@@ -28,7 +28,7 @@ The MongoDB ORM, [Mongoose](http://mongoosejs.com/), has been replaced with [Seq
 - [Grunt](http://gruntjs.com/) - In one word: automation. The less work you have to do when performing repetitive tasks like minification, compilation, unit testing, linting, etc, the easier your job becomes. After you've configured it, a Grunt can do most of that mundane work for you—and your team—with basically zero effort.
 - [Bower](http://bower.io/) - Bower is a package manager for the web. It offers a generic, unopinionated solution to the problem of front-end package management, while exposing the package dependency model via an API that can be consumed by a more opinionated build stack. There are no system wide dependencies, no dependencies are shared between different apps, and the dependency tree is flat.
 
-# Front Tools Used
+## Front Tools Used
 - [Angular.js](http://angularjs.org) - AngularJS is an open-source JavaScript framework, maintained by Google, that assists with running single-page applications. Its goal is to augment browser-based applications with model–view–controller (MVC) capability, in an effort to make both development and testing easier.
 - [Twitter Bootstrap](http://getbootstrap.com/) - Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.
 - [UI Bootstrap](http://angular-ui.github.io/bootstrap/) - Bootstrap components written in pure AngularJS by the AngularUI Team
@@ -37,21 +37,23 @@ The MongoDB ORM, [Mongoose](http://mongoosejs.com/), has been replaced with [Seq
 
 Alright now the fun begins. First clone or download the repo to your computer. 
 
-``` git clone git@github.com:jpotts18/mean-stack-relational.git ```
+>git clone git@github.com:jpotts18/mean-stack-relational.git
 
 After you have clone the repository go into the 
 
-``` cd mean-stack-relational/ ```
+>cd mean-stack-relational/
 
 From inside the repository you will run 
 
-```npm install``` 
+>npm install
 
-NPM (Node Package Manager) will look at the [package.json](https://github.com/jpotts18/mean-stack-relational/blob/master/package.json) file in the root of the project and download all of the necessary dependencies and put them in a folder called ```node_modules```
+NPM (Node Package Manager) will look at the [package.json](https://github.com/jpotts18/mean-stack-relational/blob/master/package.json) file in the root of the project and download all of the necessary dependencies and put them in a folder called node_modules
 
-The next step is to let Grunt run through its basic checks and start you application. You can do this by running the command 
 
-```grunt```
+The next step is to let Grunt run through its basic checks and start you application. You can do this by running the 
+command
+
+>grunt
 
 Grunt does a lot of important things for your application. Here is what Grunt does in this applicaiton
 1. It [watches](https://github.com/jpotts18/mean-stack-relational/blob/master/gruntfile.js#L5) your filesystem and when it detects a change it will livereload your changes. 
@@ -61,9 +63,9 @@ Grunt does a lot of important things for your application. Here is what Grunt do
 
 Go see it in the browser
 
-``` http://localhost:3000
+>http://localhost:3000
 
-Troubleshooting
+# Troubleshooting
 
 During install some of you may encounter some issues, most of this issues can be solved by one of the following tips. If you went through all this and still can't solve the issue, feel free to contact me(jpotts18), via the repository issue tracker or the links provided below. I am also available on twitter [@jpotts18](http://twitter.com/jpotts18).
 
