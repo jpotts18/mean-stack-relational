@@ -5,9 +5,9 @@ The main idea for this repository is shamelessly stolen from [http://mean.io](ht
 > MEAN is a boilerplate that provides a nice starting point for [MySQL], Express, Node.js, and AngularJS based applications. It is designed to give you quick and organized way to start developing of MEAN based web apps with useful modules like sequelize and passport pre-bundled and configured. We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.
 
 
-The MongoDB ORM, [Mongoose](http://mongoosejs.com/), has been replaced with [Sequelize](http://sequelizejs.com/). By switching from mongoose to sequelize. We allow developers easy access to MySQL, MariaDB, SQLite or PostgreSQL databases by mapping database entries to objects and vice versa.
+The MongoDB ORM, [Mongoose](http://mongoosejs.com/), has been replaced with [Sequelize](http://sequelizejs.com/). Switching from mongoose to sequelize allows developers easy access to MySQL, MariaDB, SQLite or PostgreSQL databases by mapping database entries to objects and vice versa.
 
-[Addy Osmani's Blog](http://addyosmani.com/blog/full-stack-javascript-with-mean-and-yeoman/) explains SQL databases, being strongly typed in nature are great at enforcing a level of consistency, ensuring many kinds of bad data simply don’t get recorded. By using SQL databases Mean Stack Relational favors reliability over the performance gains of NoSQL databases.
+[Addy Osmani's Blog](http://addyosmani.com/blog/full-stack-javascript-with-mean-and-yeoman/) explains SQL databases, being strongly typed in nature are great at enforcing a level of consistency, ensuring many kinds of bad data simply don’t get recorded. By using SQL databases MEAN Stack Relational favors reliability over the performance gains of NoSQL databases.
 
 # Getting Started
 
@@ -65,7 +65,7 @@ Thats all! Now go and open up your browser at [http://localhost:3000](http://loc
 
 # Troubleshooting
 
-During install some of you may encounter some issues, most of this issues can be solved by one of the following tips. If you went through all this and still can't solve the issue, feel free to contact me(jpotts18), via the repository issue tracker or the links provided below. I am also available on twitter [@jpotts18](http://twitter.com/jpotts18).
+During install some of you may encounter some issues, most of this issues can be solved by one of the following tips. If you went through all this and still can't solve the issue, feel free to contact me (jpotts18), via the repository issue tracker or the links provided below. I am also available on twitter [@jpotts18](http://twitter.com/jpotts18).
 
 
  
