@@ -65,7 +65,7 @@ Thats all! Now go and open up your browser at [http://localhost:3000](http://loc
 
 # Troubleshooting
 
-During install some of you may encounter some issues, most of this issues can be solved by one of the following tips. If you went through all this and still can't solve the issue, feel free to contact me (jpotts18), via the repository issue tracker or the links provided below. I am also available on twitter [@jpotts18](http://twitter.com/jpotts18).
+During install some of you may encounter some issues feel free to contact me (jpotts18), via the repository issue tracker or the links provided below. I am also available on twitter [@jpotts18](http://twitter.com/jpotts18).
 
 
  
