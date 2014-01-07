@@ -1,4 +1,4 @@
-MEAN Stack Relational
+MEAN Stack Relational ![Mean Stack Build Status](https://travis-ci.org/jpotts18/mean-stack-relational.png)
 =====================
 The main idea for this repository is shamelessly stolen from [http://mean.io](http://mean.io). It says:
 
