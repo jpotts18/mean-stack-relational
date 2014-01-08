@@ -26,7 +26,9 @@ npm install
 # Use grunt task runner to execute the application
 grunt
 
-# plug in your private and public keys for working with FB and Twitter into config/env/development.js
+# NOTE:
+# 
+# Plug in your private and public keys for working with FB and Twitter into config/env/development.js
 # If you don't do this you will get a TypeError: OAuthStrategy requires a consumerKey option
 # If you don't have keys yet, I think you can plug a random string in and it will compile correctly
 ```
