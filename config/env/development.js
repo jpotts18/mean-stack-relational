@@ -2,7 +2,7 @@ module.exports = {
     db: {
         name: "mean_relational",
         password: "",
-        username: "root",
+        username: "root"
     },
     app: {
         name: "M*EAN Stack - Development"
