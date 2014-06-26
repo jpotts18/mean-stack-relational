@@ -1,4 +1,5 @@
 module.exports = {
+    // This is your MYSQL Database configuration
     db: {
         name: "mean_relational",
         password: "",
@@ -7,14 +8,15 @@ module.exports = {
     app: {
         name: "M*EAN Stack - Development"
     },
+    // You will need to get your own client id's before this will work properly
     facebook: {
-        clientID: "",
-        clientSecret: "",
+        clientID: "<CLIENT ID>",
+        clientSecret: "<CLIENT SECRET>",
         callbackURL: "http://localhost:3000/auth/facebook/callback"
     },
     twitter: {
-        clientID: "",
-        clientSecret: "",
+        clientID: "<CLIENT ID>",
+        clientSecret: "<CLIENT SECRET>",
         callbackURL: "http://localhost:3000/auth/twitter/callback"
     },
     google: {

@@ -5,6 +5,9 @@ var _         = require('lodash');
 var config    = require('./config');
 var db        = {};
 
+
+// TODO: add Heroku configuration
+
 console.log('Initializing Sequelize');
 
 // create your instance of sequelize
