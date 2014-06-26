@@ -13,25 +13,13 @@ The MongoDB ORM, [Mongoose](http://mongoosejs.com/), has been replaced with [Seq
 
 Alright now the fun begins. First clone or download the repo to your computer. 
 
-``` bash
-# Clone the repository
-git clone git@github.com:jpotts18/mean-stack-relational.git
-
-# Go into the repository
-cd mean-stack-relational/
-
-# Install dependencies with NPM
-npm install
-
-# Use grunt task runner to execute the application
-grunt
-
-# NOTE:
-# 
-# Plug in your private and public keys for working with FB and Twitter into config/env/development.js
-# If you don't do this you will get a TypeError: OAuthStrategy requires a consumerKey option
-# If you don't have keys yet, I think you can plug a random string in and it will compile correctly
-```
+1. Clone the repository ```git clone git@github.com:jpotts18/mean-stack-relational.git```.
+1. Go into the repository ```cd mean-stack-relational/```.
+1. Install dependencies with NPM ```npm install```.
+1. Plug in your private and public keys for working with FB and Twitter into ```/config/env/development.js```.
+1. Wire up the database connection found in ```/config/env/development.js```.
+1. Initialize Grunt task runner ```grunt```.
+1. Make something awesome!
 
 Thats all! Now go and open up your browser at [http://localhost:3000](http://localhost:3000), and tweet [@jpotts18](http://twitter.com/jpotts18) to say thanks!
 
