@@ -35,6 +35,7 @@
     "grunt": "latest",
     "grunt-cli": "latest",
     "grunt-env": "latest",
+    "grunt-copy": "latest",
     "lodash": "latest",
     "winston": "latest",
     "sequelize-mysql": "latest",
