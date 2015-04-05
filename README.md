@@ -1,3 +1,5 @@
+## Warning: This project is out of date. I would love contributions but I don't plan to make the updates myself.
+
 MEAN Stack Relational ![Mean Stack Build Status](https://travis-ci.org/jpotts18/mean-stack-relational.png)
 =====================
 The main idea for this repository is shamelessly stolen from [http://mean.io](http://mean.io). It says:
@@ -52,7 +54,7 @@ Thats all! Now go and open up your browser at [http://localhost:3000](http://loc
 
 - [Bower](http://bower.io/) - Bower is a package manager for the web. It offers a generic, unopinionated solution to the problem of front-end package management, while exposing the package dependency model via an API that can be consumed by a more opinionated build stack. There are no system wide dependencies, no dependencies are shared between different apps, and the dependency tree is flat.
 
-### Front Tools Used
+### Front-End Tools Used
 - [Angular.js](http://angularjs.org) - AngularJS is an open-source JavaScript framework, maintained by Google, that assists with running single-page applications. Its goal is to augment browser-based applications with model–view–controller (MVC) capability, in an effort to make both development and testing easier.
 - [Twitter Bootstrap](http://getbootstrap.com/) - Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.
 - [UI Bootstrap](http://angular-ui.github.io/bootstrap/) - Bootstrap components written in pure AngularJS by the AngularUI Team
