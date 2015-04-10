@@ -58,11 +58,13 @@ exports.init = function(app, passport, auth) {
     app.param('userId', users.user);
 
     // Article Routes
-    app.get('/articles', articles.all);
-    app.post('/articles', auth.requiresLogin, articles.create);
-    app.get('/articles/:articleId', articles.show);
-    app.put('/articles/:articleId', auth.requiresLogin, auth.article.hasAuthorization, articles.update);
-    app.del('/articles/:articleId', auth.requiresLogin, auth.article.hasAuthorization, articles.destroy);
+    app.route('/articles')
+        .get(articles.all)
+        .post(auth.requiresLogin, articles.create);
+    app.route('/articles/:articleId')
+        .get(articles.show)
+        .put(auth.requiresLogin, auth.article.hasAuthorization, articles.update)
+        .delete(auth.requiresLogin, auth.article.hasAuthorization, articles.destroy);
 
     // Finish with setting up the articleId param
     // Note: the articles.article function will be called everytime then it will call the next function. 
