@@ -15,10 +15,10 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-    db.User.find({where: {id: id}}).success(function(user){
+    db.User.find({where: {id: id}}).then(function(user){
         console.log('Session: { id: ' + user.id + ', username: ' + user.username + ' }');
         done(null, user);
-    }).error(function(err){
+    }).catch(function(err){
         done(err, null);
     });
 });
@@ -29,7 +29,7 @@ passport.use(new LocalStrategy({
     passwordField: 'password'
   },
   function(email, password, done) {
-    db.User.find({ where: { email: email }}).success(function(user) {
+    db.User.find({ where: { email: email }}).then(function(user) {
       if (!user) {
         done(null, false, { message: 'Unknown user' });
       } else if (!user.authenticate(password)) {
@@ -38,7 +38,7 @@ passport.use(new LocalStrategy({
         console.log('Login (local) : { id: ' + user.id + ', username: ' + user.username + ' }');
         done(null, user);
       }
-    }).error(function(err){
+    }).catch(function(err){
       done(err);
     });
   }
@@ -52,14 +52,14 @@ passport.use(new TwitterStrategy({
     },
     function(token, tokenSecret, profile, done) {
         
-        db.User.find({where: {twitterUserId: profile.id}}).success(function(user){
+        db.User.find({where: {twitterUserId: profile.id}}).then(function(user){
             if(!user){
                 db.User.create({
                     twitterUserId: profile.id,
                     name: profile.displayName,
                     username: profile.username,
                     provider: 'twitter'
-                }).success(function(u){
+                }).then(function(u){
                     console.log('New User (twitter) : { id: ' + u.id + ', username: ' + u.username + ' }');
                     done(null, u);
                 });
@@ -68,7 +68,7 @@ passport.use(new TwitterStrategy({
                 done(null, user);
             }
         
-        }).error(function(err){
+        }).catch(function(err){
             done(err, null);
         });
     }
@@ -83,7 +83,7 @@ passport.use(new FacebookStrategy({
     },
     function(accessToken, refreshToken, profile, done) {
 
-        db.User.find({where : {facebookUserId: profile.id}}).success(function(user){
+        db.User.find({where : {facebookUserId: profile.id}}).then(function(user){
             if(!user){
                 db.User.create({
                     name: profile.displayName,
@@ -91,7 +91,7 @@ passport.use(new FacebookStrategy({
                     username: profile.username,
                     provider: 'facebook',
                     facebookUserId: profile.id
-                }).success(function(u){
+                }).then(function(u){
                     console.log('New User (facebook) : { id: ' + u.id + ', username: ' + u.username + ' }');
                     done(null, u);
                 })
@@ -99,9 +99,9 @@ passport.use(new FacebookStrategy({
                 console.log('Login (facebook) : { id: ' + user.id + ', username: ' + user.username + ' }');
                 done(null, user);
             }
-        }).error(function(err){
+        }).catch(function(err){
             done(err, null);
-        })
+        });
     }
 ));
 
@@ -114,14 +114,14 @@ passport.use(new GoogleStrategy({
     console.log(identifier);
     console.log(profile);
 
-    db.User.find({where: {openId: identifier}}).success(function(user){
+    db.User.find({where: {openId: identifier}}).then(function(user){
         if(!user){
             db.User.create({
                 name: profile.displayName,
                 email: profile.emails[0].value,
                 username: profile.displayName.replace(/ /g,''),
                 openId: identifier, 
-            }).success(function(u){
+            }).then(function(u){
                 console.log('New User (google) : { id: ' + u.id + ', username: ' + u.username + ' }');
                 done(null, u);
             })
@@ -129,7 +129,7 @@ passport.use(new GoogleStrategy({
             console.log('Login (google) : { id: ' + user.id + ', username: ' + user.username + ' }');
             done(null, user);
         }
-    }).error(function(err){
+    }).catch(function(err){
         done(err, null);
     });
   }

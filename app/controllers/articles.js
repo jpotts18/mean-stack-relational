@@ -10,14 +10,14 @@ var db = require('../../config/sequelize');
  */
 exports.article = function(req, res, next, id) {
     console.log('id => ' + id);
-    db.Article.find({ where: {id: id}, include: [db.User]}).success(function(article){
+    db.Article.find({ where: {id: id}, include: [db.User]}).then(function(article){
         if(!article) {
             return next(new Error('Failed to load article ' + id));
         } else {
             req.article = article;
             return next();            
         }
-    }).error(function(err){
+    }).catch(function(err){
         return next(err);
     });
 };
@@ -29,13 +29,13 @@ exports.create = function(req, res) {
     // augment the article by adding the UserId
     req.body.UserId = req.user.id;
     // save and return and instance of article on the res object. 
-    db.Article.create(req.body).success(function(article){
+    db.Article.create(req.body).then(function(article){
         if(!article){
             return res.send('users/signup', {errors: err});
         } else {
             return res.jsonp(article);
         }
-    }).error(function(err){
+    }).catch(function(err){
         return res.send('users/signup', { 
             errors: err,
             status: 500
@@ -54,9 +54,9 @@ exports.update = function(req, res) {
     article.updateAttributes({
         title: req.body.title,
         content: req.body.content
-    }).success(function(a){
+    }).then(function(a){
         return res.jsonp(a);
-    }).error(function(err){
+    }).catch(function(err){
         return res.render('error', {
             error: err, 
             status: 500
@@ -72,9 +72,9 @@ exports.destroy = function(req, res) {
     // create a new variable to hold the article that was placed on the req object.
     var article = req.article;
 
-    article.destroy().success(function(){
+    article.destroy().then(function(){
         return res.jsonp(article);
-    }).error(function(err){
+    }).catch(function(err){
         return res.render('error', {
             error: err,
             status: 500
@@ -95,9 +95,9 @@ exports.show = function(req, res) {
  * List of Articles
  */
 exports.all = function(req, res) {
-    db.Article.findAll({include: [db.User]}).success(function(articles){
+    db.Article.findAll({include: [db.User]}).then(function(articles){
         return res.jsonp(articles);
-    }).error(function(err){
+    }).catch(function(err){
         return res.render('error', {
             error: err,
             status: 500
