@@ -1,6 +1,6 @@
 var fs        = require('fs');
 var path      = require('path');
-var Sequelize = require('sequelize-mysql').sequelize;
+var Sequelize = require('sequelize');
 var _         = require('lodash');
 var config    = require('./config');
 var db        = {};
@@ -39,10 +39,11 @@ Object.keys(db).forEach(function(modelName) {
 // WARNING: this will DROP your database everytime you re-run your application
 sequelize
   .sync({force: true})
-  .complete(function(err){
-    if(err) console.log("An error occured %j",err);
-    else console.log("Database dropped and synchronized");
-});
+  .then(function(){
+        console.log("Database dropped and synchronized");
+    }).catch(function(err){
+        console.log("An error occured %j",err);
+    });
  
 // assign the sequelize variables to the db object and returning the db. 
 module.exports = _.extend({

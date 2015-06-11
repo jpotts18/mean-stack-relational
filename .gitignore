@@ -27,3 +27,13 @@ test/coverage/
 migrations/
 
 *.local
+
+# IDE files
+.idea
+/.*.md.html
+.settings
+.project
+.classpath
+*~
+*.swp
+*.swo

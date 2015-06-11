@@ -58,12 +58,12 @@ exports.create = function(req, res) {
     user.hashedPassword = user.encryptPassword(req.body.password, user.salt);
     console.log('New User (local) : { id: ' + user.id + ' username: ' + user.username + ' }');
     
-    user.save().success(function(){
+    user.save().then(function(){
       req.login(user, function(err){
         if(err) return next(err);
         res.redirect('/');
       });
-    }).error(function(err){
+    }).catch(function(err){
       res.render('users/signup',{
           message: message,
           user: user
@@ -82,11 +82,11 @@ exports.me = function(req, res) {
  * Find user by id
  */
 exports.user = function(req, res, next, id) {
-    User.find({where : { id: id }}).success(function(user){
+    User.find({where : { id: id }}).then(function(user){
       if (!user) return next(new Error('Failed to load User ' + id));
       req.profile = user;
       next();
-    }).error(function(err){
+    }).catch(function(err){
       next(err);
     });
 };
