@@ -46,53 +46,50 @@ module.exports = function(app, passport) {
     //Enable jsonp
     app.enable("jsonp callback");
 
-    if (process.env.NODE_ENV === 'development') {
-        //cookieParser should be above session
-        app.use(cookieParser());
+    //cookieParser should be above session
+    app.use(cookieParser());
 
-        // request body parsing middleware should be above methodOverride
-        app.use(bodyParser.urlencoded({ extended: true }));
-        app.use(bodyParser.json());
-        app.use(methodOverride());
+    // request body parsing middleware should be above methodOverride
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.json());
+    app.use(methodOverride());
 
-        //express/mongo session storage
-        app.use(session({
-            resave: false, // don't save session if unmodified
-            saveUninitialized: false, // don't create session until something stored
-            secret: '$uper$ecret$e$$ionKey'
-        }));
+    //express/mongo session storage
+    app.use(session({
+        resave: false, // don't save session if unmodified
+        saveUninitialized: false, // don't create session until something stored
+        secret: '$uper$ecret$e$$ionKey'
+    }));
 
-        //connect flash for flash messages
-        app.use(flash());
+    //connect flash for flash messages
+    app.use(flash());
 
-        //dynamic helpers
-        app.use(helpers(config.app.name));
+    //dynamic helpers
+    app.use(helpers(config.app.name));
 
-        //use passport session
-        app.use(passport.initialize());
-        app.use(passport.session());
+    //use passport session
+    app.use(passport.initialize());
+    app.use(passport.session());
 
-        //Assume "not found" in the error msgs is a 404. this is somewhat silly, but valid, you can do whatever you like, set properties, use instanceof etc.
-        app.use(function(err, req, res, next) {
-            //Treat as 404
-            if (~err.message.indexOf('not found')) return next();
+    //Assume "not found" in the error msgs is a 404. this is somewhat silly, but valid, you can do whatever you like, set properties, use instanceof etc.
+    app.use(function(err, req, res, next) {
+        //Treat as 404
+        if (~err.message.indexOf('not found')) return next();
 
-            //Log it
-            console.error(err.stack);
+        //Log it
+        console.error(err.stack);
 
-            //Error page
-            res.status(500).render('500', {
-                error: err.stack
-            });
+        //Error page
+        res.status(500).render('500', {
+            error: err.stack
         });
-        
-        //Assume 404 since no middleware responded
-        app.use(function(err, req, res, next) {
-            res.status(404).render('404', {
-                url: req.originalUrl,
-                error: 'Not found'
-            });
+    });
+
+    //Assume 404 since no middleware responded
+    app.use(function(err, req, res, next) {
+        res.status(404).render('404', {
+            url: req.originalUrl,
+            error: 'Not found'
         });
-        
-    }
+    });
 };
