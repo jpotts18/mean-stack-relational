@@ -12,6 +12,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var session = require('express-session');
+var winston = require('./winston');
 
 module.exports = function(app, passport) {
 
@@ -36,7 +37,7 @@ module.exports = function(app, passport) {
 
     //Don't use logger for test env
     if (process.env.NODE_ENV !== 'test') {
-        app.use(logger('dev'));
+        app.use(logger('dev', { "stream": winston.stream }));
     }
 
     //Set views path, template engine and default layout
