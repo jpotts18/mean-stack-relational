@@ -1,5 +1,11 @@
 module.exports = {
     port: 3001,
+    // This is your MYSQL Database configuration
+    db: {
+        name: "mean_relational",
+        password: "",
+        username: "root"
+    },
     app: {
         name: "MEAN - A Modern Stack - Test"
     },
@@ -23,4 +29,4 @@ module.exports = {
         clientSecret: "APP_SECRET",
         callbackURL: "http://localhost:3000/auth/google/callback"
     }
-}
+};
