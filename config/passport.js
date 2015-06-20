@@ -8,6 +8,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google').Strategy;
 var config = require('./config');
 var db = require('./sequelize');
+var winston = require('./winston');
 
 //Serialize sessions
 passport.serializeUser(function(user, done) {
@@ -16,7 +17,7 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(id, done) {
     db.User.find({where: {id: id}}).then(function(user){
-        console.log('Session: { id: ' + user.id + ', username: ' + user.username + ' }');
+        winston.info('Session: { id: ' + user.id + ', username: ' + user.username + ' }');
         done(null, user);
     }).catch(function(err){
         done(err, null);
@@ -35,7 +36,7 @@ passport.use(new LocalStrategy({
       } else if (!user.authenticate(password)) {
         done(null, false, { message: 'Invalid password'});
       } else {
-        console.log('Login (local) : { id: ' + user.id + ', username: ' + user.username + ' }');
+        winston.info('Login (local) : { id: ' + user.id + ', username: ' + user.username + ' }');
         done(null, user);
       }
     }).catch(function(err){
@@ -60,11 +61,11 @@ passport.use(new TwitterStrategy({
                     username: profile.username,
                     provider: 'twitter'
                 }).then(function(u){
-                    console.log('New User (twitter) : { id: ' + u.id + ', username: ' + u.username + ' }');
+                    winston.info('New User (twitter) : { id: ' + u.id + ', username: ' + u.username + ' }');
                     done(null, u);
                 });
             } else {
-                console.log('Login (twitter) : { id: ' + user.id + ', username: ' + user.username + ' }');
+                winston.info('Login (twitter) : { id: ' + user.id + ', username: ' + user.username + ' }');
                 done(null, user);
             }
         
@@ -92,11 +93,11 @@ passport.use(new FacebookStrategy({
                     provider: 'facebook',
                     facebookUserId: profile.id
                 }).then(function(u){
-                    console.log('New User (facebook) : { id: ' + u.id + ', username: ' + u.username + ' }');
+                    winston.info('New User (facebook) : { id: ' + u.id + ', username: ' + u.username + ' }');
                     done(null, u);
                 })
             } else {
-                console.log('Login (facebook) : { id: ' + user.id + ', username: ' + user.username + ' }');
+                winston.info('Login (facebook) : { id: ' + user.id + ', username: ' + user.username + ' }');
                 done(null, user);
             }
         }).catch(function(err){
@@ -122,11 +123,11 @@ passport.use(new GoogleStrategy({
                 username: profile.displayName.replace(/ /g,''),
                 openId: identifier, 
             }).then(function(u){
-                console.log('New User (google) : { id: ' + u.id + ', username: ' + u.username + ' }');
+                winston.info('New User (google) : { id: ' + u.id + ', username: ' + u.username + ' }');
                 done(null, u);
             })
         } else {
-            console.log('Login (google) : { id: ' + user.id + ', username: ' + user.username + ' }');
+            winston.info('Login (google) : { id: ' + user.id + ', username: ' + user.username + ' }');
             done(null, user);
         }
     }).catch(function(err){

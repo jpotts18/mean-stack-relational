@@ -41,7 +41,7 @@
     "passport-google": "latest",
     "passport-local": "1.0.0",
     "passport-twitter": "1.0.2",
-    "sequelize": "latest",
+    "sequelize": "^3.2.0",
     "serve-favicon": "2.2.0",
     "underscore": "latest",
     "view-helpers": "latest",
