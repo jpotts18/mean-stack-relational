@@ -59,6 +59,23 @@ Thats all! Now go and open up your browser at [http://localhost:3000](http://loc
 - [Twitter Bootstrap](http://getbootstrap.com/) - Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.
 - [UI Bootstrap](http://angular-ui.github.io/bootstrap/) - Bootstrap components written in pure AngularJS by the AngularUI Team
 
+# Project Roadmap
+
+Following is a list of items detailing future direction for MEAN Stack Relational:
+
+## Purpose
+- Demonstrate several login strategies using passport.js
+- Demonstrate environment configuration best practices
+- Demonstrate how to use Sequelize to query a single table and to accomplish a join.
+
+## Additions
+- Demonstrate testing for express routes and javascript classes using mocha, sinon and proxyquire and more
+- Demonstrate persistent sessions across grunt reboots and server restarts via a session store: e.g. express mysql session or redis
+- Demonstrate proper logging via winston
+- Demonstrating modularity by using javascript classes for complex backend functionality
+- Yeoman generator to compete with MEAN
+
+
 # Troubleshooting
 
 During install some of you may encounter some issues feel free to contact me (jpotts18), via the repository issue tracker or the links provided below. I am also available on twitter [@jpotts18](http://twitter.com/jpotts18).
