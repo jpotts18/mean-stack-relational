@@ -1,7 +1,7 @@
 /**
  * Module dependencies.
  */
-var _ = require('underscore');
+var _ = require('lodash');
 
 
 exports.render = function(req, res) {
