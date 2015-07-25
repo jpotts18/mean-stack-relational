@@ -76,4 +76,4 @@ Following is a list of items detailing future direction for MEAN Stack Relationa
 
 # Troubleshooting and Contact
 
-During install some of you may encounter some issues feel free to contact me (jpotts18) or the co-contributor (chaudhry-junaid), via the repository issue tracker or the links provided below. I am also available on twitter at [@jpotts18](http://twitter.com/jpotts18) and Junaid at [@chjunaidanwar](http://twitter.com/chjunaidanwar).
+During install some of you may encounter some issues feel free to contact me (jpotts18) or the co-contributor (chaudhryjunaid), via the repository issue tracker or the links provided below. I am also available on twitter at [@jpotts18](http://twitter.com/jpotts18) and Junaid at [@chjunaidanwar](http://twitter.com/chjunaidanwar).
