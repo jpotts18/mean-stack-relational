@@ -5,7 +5,7 @@ var winston = require('winston');
 var logger = new (winston.Logger)();
 
 logger.add(winston.transports.Console, {
-    level: 'info',
+    level: 'verbose',
     prettyPrint: true,
     colorize: true,
     silent: false,

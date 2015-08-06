@@ -3,7 +3,9 @@ module.exports = {
     db: {
         name: "mean_relational",
         password: "",
-        username: "root"
+        username: "root",
+        host:"localhost",
+        port:3306
     },
     app: {
         name: "M*EAN Stack - Development"
