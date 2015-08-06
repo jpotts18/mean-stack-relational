@@ -16,7 +16,7 @@ var winston = require('./winston');
 
 module.exports = function(app, passport) {
 
-    console.log('Initializing Express');
+    winston.info('Initializing Express');
 
     app.set('showStackError', true);    
     

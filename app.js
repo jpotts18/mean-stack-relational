@@ -16,6 +16,7 @@ var config          = require('./config/config');
 var auth            = require('./config/middlewares/authorization');
 var db              = require('./config/sequelize');
 var passport        = require('./config/passport');
+var winston         = require('./config/winston')
 
 var app = express();
 
@@ -28,7 +29,7 @@ require('./config/routes').init(app, passport, auth);
 //Start the app by listening on <port>
 var port = process.env.PORT || config.port;
 app.listen(port);
-console.log('Express app started on port ' + port);
+winston.info('Express app started on port ' + port);
 
 //expose app
 exports = module.exports = app;

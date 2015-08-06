@@ -3,9 +3,11 @@ var users       = require('../app/controllers/users');
 var articles    = require('../app/controllers/articles');
 var index       = require('../app/controllers/index');
 
+var winston     = require('./winston');
+
 exports.init = function(app, passport, auth) {
 
-    console.log('Initializing Routes');
+    winston.info('Initializing Routes');
 
     // User Routes
     app.get('/signin', users.signin);
