@@ -11,7 +11,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var session = require('express-session');
+var sessionMiddleware = require('./middlewares/session');
 var winston = require('./winston');
 
 module.exports = function(app, passport) {
@@ -55,12 +55,8 @@ module.exports = function(app, passport) {
     app.use(bodyParser.json());
     app.use(methodOverride());
 
-    //express/mongo session storage
-    app.use(session({
-        resave: false, // don't save session if unmodified
-        saveUninitialized: false, // don't create session until something stored
-        secret: '$uper$ecret$e$$ionKey'
-    }));
+    //express session configuration
+    app.use(sessionMiddleware);
 
     //connect flash for flash messages
     app.use(flash());

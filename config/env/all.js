@@ -6,5 +6,6 @@ module.exports = {
 	port: process.env.PORT || 3000,
 	modelsDir : rootPath + '/app/models',
     forceSequelizeSync: process.env.FORCE_DB_SYNC==='true',
-    enableSequelizeLog: false
+    enableSequelizeLog: true,
+    expressSessionSecret: '$uper$ecret$e$$ionKey' // replace with your own
 };
