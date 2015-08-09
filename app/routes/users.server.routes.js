@@ -1,13 +1,14 @@
+(function() {
+  'use strict';
 
-var users       = require('../app/controllers/users');
-var articles    = require('../app/controllers/articles');
-var index       = require('../app/controllers/index');
+  /**
+   * Module dependencies.
+   */
+  var passport = require('passport');
 
-var winston     = require('./winston');
-
-exports.init = function(app, passport, auth) {
-
-    winston.info('Initializing Routes');
+  module.exports = function(app) {
+    // User Routes
+    var users = require('../../app/controllers/users');
 
     // User Routes
     app.get('/signin', users.signin);
@@ -58,21 +59,5 @@ exports.init = function(app, passport, auth) {
 
     // Finish with setting up the userId param
     app.param('userId', users.user);
-
-    // Article Routes
-    app.route('/articles')
-        .get(articles.all)
-        .post(auth.requiresLogin, articles.create);
-    app.route('/articles/:articleId')
-        .get(articles.show)
-        .put(auth.requiresLogin, auth.article.hasAuthorization, articles.update)
-        .delete(auth.requiresLogin, auth.article.hasAuthorization, articles.destroy);
-
-    // Finish with setting up the articleId param
-    // Note: the articles.article function will be called everytime then it will call the next function. 
-    app.param('articleId', articles.article);
-
-    // Home route
-    app.get('/', index.render);
-
-};
+  };
+}());
