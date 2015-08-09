@@ -37,7 +37,7 @@ describe('User model', function() {
     describe('name', function(){
         it('should be equal to: User', function(){
             userModel.name.should.equal('User');
-        })
+        });
     });
 
     describe('data', function() {
@@ -81,7 +81,7 @@ describe('User model', function() {
                         hashedPassword: userModel.properties.instanceMethods.encryptPassword('password','salt'),
                         encryptPassword: userModel.properties.instanceMethods.encryptPassword
                     }, 'password');
-                    authResult.should.be.true;
+                    authResult.should.equal(true);
                 });
                 it('should return false if password is incorrect', function(){
                     var authResult = userModel.properties.instanceMethods.authenticate.call({
@@ -89,7 +89,7 @@ describe('User model', function() {
                         hashedPassword: userModel.properties.instanceMethods.encryptPassword('password','salt'),
                         encryptPassword: userModel.properties.instanceMethods.encryptPassword
                     }, 'NOTpassword');
-                    authResult.should.be.false;
+                    authResult.should.equal(false);
                 });
             });
         });
