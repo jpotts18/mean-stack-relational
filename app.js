@@ -13,7 +13,6 @@ var fs          = require('fs');
 
 var env             = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var config          = require('./config/config');
-var auth            = require('./app/middlewares/authorization');
 var db              = require('./config/sequelize');
 var passport        = require('./config/passport');
 var winston         = require('./config/winston');
@@ -22,9 +21,6 @@ var app = express();
 
 //Initialize Express
 require('./config/express')(app, passport);
-
-//Initialize Routes
-require('./config/routes').init(app, passport, auth);
 
 //Start the app by listening on <port>
 var port = process.env.PORT || config.port;
