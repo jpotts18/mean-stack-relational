@@ -104,3 +104,13 @@ exports.all = function(req, res) {
         });
     });
 };
+
+/**
+ * Article authorizations routing middleware
+ */
+exports.hasAuthorization = function(req, res, next) {
+    if (req.article.User.id != req.user.id) {
+      return res.send(401, 'User is not authorized');
+    }
+    next();
+};

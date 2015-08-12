@@ -13,6 +13,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var sessionMiddleware = require('./middlewares/session');
 var winston = require('./winston');
+var path = require('path');
 
 module.exports = function(app, passport) {
 
@@ -67,6 +68,11 @@ module.exports = function(app, passport) {
     //use passport session
     app.use(passport.initialize());
     app.use(passport.session());
+
+    // Globbing routing files
+    config.getGlobbedFiles('./app/routes/**/*.js').forEach(function(routePath) {
+      require(path.resolve(routePath))(app);
+    });
 
     //Assume "not found" in the error msgs is a 404. this is somewhat silly, but valid, you can do whatever you like, set properties, use instanceof etc.
     app.use(function(err, req, res, next) {
