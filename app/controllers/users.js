@@ -4,32 +4,6 @@
 var db = require('../../config/sequelize');
 
 /**
- * Auth callback
- */
-exports.authCallback = function(req, res, next) {
-    res.redirect('/');
-};
-
-/**
- * Show login form
- */
-exports.signin = function(req, res) {
-    res.render('users/signin', {
-        title: 'Signin',
-        message: req.flash('error')
-    });
-};
-
-/**
- * Show sign up form
- */
-exports.signup = function(req, res) {
-    res.render('users/signup', {
-        title: 'Sign up',
-    });
-};
-
-/**
  * Logout
  */
 exports.signout = function(req, res) {
@@ -109,4 +83,24 @@ exports.hasAuthorization = function(req, res, next) {
       return res.send(401, 'User is not authorized');
     }
     next();
+};
+
+/**
+ * OAuth callback
+ */
+exports.oauthCallback = function(strategy) {
+	return function(req, res, next) {
+		passport.authenticate(strategy, function(err, user, redirectURL) {
+			if (err || !user) {
+				return res.redirect('/#!/signin');
+			}
+			req.login(user, function(err) {
+				if (err) {
+					return res.redirect('/#!/signin');
+				}
+
+				return res.redirect(redirectURL || '/');
+			});
+		})(req, res, next);
+	};
 };

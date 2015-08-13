@@ -14,12 +14,17 @@ var methodOverride = require('method-override');
 var sessionMiddleware = require('./middlewares/session');
 var winston = require('./winston');
 var path = require('path');
+var consolidate = require('consolidate');
 
 module.exports = function(app, passport) {
 
     winston.info('Initializing Express');
 
     app.set('showStackError', true);    
+
+    // Setting application local variables
+    app.locals.jsFiles = config.getJavaScriptAssets();
+    app.locals.cssFiles = config.getCSSAssets();
     
     //Prettify HTML
     app.locals.pretty = true;
@@ -41,9 +46,12 @@ module.exports = function(app, passport) {
         app.use(logger('dev', { "stream": winston.stream }));
     }
 
+    // Set swig as the template engine
+    app.engine('server.view.html', consolidate[config.templateEngine]);
+
     //Set views path, template engine and default layout
+    app.set('view engine', 'server.view.html');
     app.set('views', config.root + '/app/views');
-    app.set('view engine', 'jade');
 
     //Enable jsonp
     app.enable("jsonp callback");
