@@ -2,10 +2,9 @@
  * Module dependencies.
  */
 var chai = require('chai'),
-    expect = chai.expect,
     _ = require('lodash'),
-    winston = require('../../../config/winston'),
-    User = require('../../../app/models/user');
+    winston = require('../../config/winston'),
+    User = require('../models/user');
 
 chai.should();
 
@@ -30,7 +29,7 @@ describe('User model', function() {
             INTEGER: 'integer'
         };
 
-        userModel = User(sequelizeStub, datatypesStub);
+        userModel = new User(sequelizeStub, datatypesStub);
 
     });
 

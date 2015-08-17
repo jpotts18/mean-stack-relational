@@ -1,7 +1,8 @@
 /**
  * Module dependencies.
  */
-var db = require('../../config/sequelize');
+var db = require('../../config/sequelize'),
+    passport = require('passport');
 
 /**
  * Logout
@@ -34,7 +35,7 @@ exports.create = function(req, res) {
     
     user.save().then(function(){
       req.login(user, function(err){
-        if(err) return next(err);
+        if(err) return res.status(400).send(err);
         res.redirect('/');
       });
     }).catch(function(err){
@@ -56,7 +57,7 @@ exports.me = function(req, res) {
  * Find user by id
  */
 exports.user = function(req, res, next, id) {
-    User.find({where : { id: id }}).then(function(user){
+    db.User.find({where : { id: id }}).then(function(user){
       if (!user) return next(new Error('Failed to load User ' + id));
       req.profile = user;
       next();

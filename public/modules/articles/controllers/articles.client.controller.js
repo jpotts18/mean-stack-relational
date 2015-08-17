@@ -1,4 +1,4 @@
-angular.module('articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', 'Authentication', 'Articles', function ($scope, $routeParams, $location, Authentication, Articles) {
+angular.module('articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Articles', function ($scope, $stateParams, $location, Authentication, Articles) {
     $scope.authentication = Authentication;
 
     $scope.create = function() {
@@ -52,7 +52,7 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$routePa
 
     $scope.findOne = function() {
         Articles.get({
-            articleId: $routeParams.articleId
+            articleId: $stateParams.articleId
         }, function(article) {
             $scope.article = article;
         });
