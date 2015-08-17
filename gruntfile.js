@@ -80,6 +80,7 @@ module.exports = function(grunt) {
                 script: 'app.js',
                 options: {
                     ignore: ['README.md', 'node_modules/**', '.DS_Store'],
+                    nodeArgs: ['--debug'],
                     ext: 'js',
                     watch: ['app', 'config'],
                     delayTime: 1,
@@ -90,8 +91,22 @@ module.exports = function(grunt) {
                 }
             }
         },
+        'node-inspector': {
+          custom: {
+            options: {
+              'web-port': 1337,
+              'web-host': 'localhost',
+              'debug-port': 5858,
+              'save-live-edit': true,
+              'no-preload': true,
+              'stack-trace-limit': 50,
+              'hidden': []
+            }
+          }
+        },
         concurrent: {
             tasks: ['nodemon', 'watch'],
+            debug: ['nodemon', 'watch', 'node-inspector'],
             options: {
                 logConcurrentOutput: true
             }
@@ -115,20 +130,16 @@ module.exports = function(grunt) {
     });
 
     //Load NPM tasks 
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-mocha-test');
-    grunt.loadNpmTasks('grunt-karma');
-    grunt.loadNpmTasks('grunt-nodemon');
-    grunt.loadNpmTasks('grunt-concurrent');
-    grunt.loadNpmTasks('grunt-env');
-    grunt.loadNpmTasks('grunt-copy');
+    require('load-grunt-tasks')(grunt);
 
     //Making grunt default to force in order not to break the project.
     grunt.option('force', true);
 
     //Default task(s).
     grunt.registerTask('default', ['copy', 'jshint', 'concurrent']);
+
+    // Debug task.
+    grunt.registerTask('debug', ['jshint', 'concurrent:debug']);
 
     //Test task.
     grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
