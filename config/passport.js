@@ -26,11 +26,11 @@ passport.deserializeUser(function(id, done) {
 
 //Use local strategy
 passport.use(new LocalStrategy({
-    usernameField: 'email',
+    usernameField: 'username',
     passwordField: 'password'
   },
   function(email, password, done) {
-    db.User.find({ where: { email: email }}).then(function(user) {
+    db.User.find({ where: { $or: [{email: email}, {username: email}]}}).then(function(user) {
       if (!user) {
         done(null, false, { message: 'Unknown user' });
       } else if (!user.authenticate(password)) {

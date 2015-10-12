@@ -1,7 +1,8 @@
 /**
  * Module dependencies.
  */
-var db = require('../../config/sequelize');
+var db = require('../../config/sequelize'),
+    errorHandler = require('./errors.server.controller');
 
 /**
  * Find article by id
@@ -31,15 +32,16 @@ exports.create = function(req, res) {
     // save and return and instance of article on the res object. 
     db.Article.create(req.body).then(function(article){
         if(!article){
-            return res.send('users/signup', {errors: err});
+          return res.status(400).send({
+            message: "failed to create article"
+          });
         } else {
             return res.jsonp(article);
         }
     }).catch(function(err){
-        return res.send('users/signup', { 
-            errors: err,
-            status: 500
-        });
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
     });
 };
 

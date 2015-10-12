@@ -1,33 +1,8 @@
 /**
  * Module dependencies.
  */
-var db = require('../../config/sequelize');
-
-/**
- * Auth callback
- */
-exports.authCallback = function(req, res, next) {
-    res.redirect('/');
-};
-
-/**
- * Show login form
- */
-exports.signin = function(req, res) {
-    res.render('users/signin', {
-        title: 'Signin',
-        message: req.flash('error')
-    });
-};
-
-/**
- * Show sign up form
- */
-exports.signup = function(req, res) {
-    res.render('users/signup', {
-        title: 'Sign up',
-    });
-};
+var db = require('../../config/sequelize'),
+    passport = require('passport');
 
 /**
  * Logout
@@ -60,7 +35,7 @@ exports.create = function(req, res) {
     
     user.save().then(function(){
       req.login(user, function(err){
-        if(err) return next(err);
+        if(err) return res.status(400).send(err);
         res.redirect('/');
       });
     }).catch(function(err){
@@ -82,7 +57,7 @@ exports.me = function(req, res) {
  * Find user by id
  */
 exports.user = function(req, res, next, id) {
-    User.find({where : { id: id }}).then(function(user){
+    db.User.find({where : { id: id }}).then(function(user){
       if (!user) return next(new Error('Failed to load User ' + id));
       req.profile = user;
       next();
@@ -109,4 +84,24 @@ exports.hasAuthorization = function(req, res, next) {
       return res.send(401, 'User is not authorized');
     }
     next();
+};
+
+/**
+ * OAuth callback
+ */
+exports.oauthCallback = function(strategy) {
+	return function(req, res, next) {
+		passport.authenticate(strategy, function(err, user, redirectURL) {
+			if (err || !user) {
+				return res.redirect('/#!/signin');
+			}
+			req.login(user, function(err) {
+				if (err) {
+					return res.redirect('/#!/signin');
+				}
+
+				return res.redirect(redirectURL || '/');
+			});
+		})(req, res, next);
+	};
 };

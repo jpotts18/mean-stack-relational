@@ -1,8 +1,8 @@
 module.exports = {
     // This is your MYSQL Database configuration
     db: {
-        name: "mean_relational",
-        password: "",
+        name: "goodeducator_development",
+        password: "root",
         username: "root",
         host:"localhost",
         port:3306
