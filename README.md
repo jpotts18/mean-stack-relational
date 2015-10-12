@@ -68,8 +68,8 @@ Following is a list of items detailing future direction for MEAN Stack Relationa
 
 ## Additions
 - Demonstrate testing for Express routes and javascript classes using Mocha, Sinon, Proxyquire and more
-- Demonstrate persistent sessions across grunt reboots and server restarts via a session store: e.g. express-mysql-session or redis store
-- Demonstrate proper logging via winston
+- Demonstrate persistent sessions across grunt reboots and server restarts via a session store: e.g. express-mysql-session or redis store - check
+- Demonstrate proper logging via winston - check
 - Demonstrating modularity by using javascript classes for complex backend functionality
 - Yeoman generator to compete with MEAN
 
