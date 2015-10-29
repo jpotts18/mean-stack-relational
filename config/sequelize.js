@@ -40,7 +40,7 @@ Object.keys(db).forEach(function(modelName) {
 // Synchronizing any model changes with database. 
 // WARNING: this will DROP your database everytime you re-run your application
 sequelize
-  .sync({force: config.forceSequelizeSync})
+  .sync({force: config.forceSequelizeSync, logging:config.enableSequelizeLog ? winston.verbose : false})
   .then(function(){
         winston.info("Database "+(config.forceSequelizeSync?"*DROPPED* and ":"")+ "synchronized");
     }).catch(function(err){
