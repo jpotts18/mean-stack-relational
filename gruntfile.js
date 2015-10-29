@@ -34,7 +34,8 @@ module.exports = function(grunt) {
         jshint: {
             all:['gruntfile.js', 'public/js/**/*.js', 'test/mocha/**/*.js', 'test/karma/**/*.js', 'app/**/*.js'],
             options: {
-                jshintrc: '.jshintrc'
+                jshintrc: '.jshintrc',
+                reporter: require('jshint-stylish')
             }
         },
         copy: {

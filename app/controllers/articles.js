@@ -3,6 +3,7 @@
 /**
  * Module dependencies.
  */
+var StandardError = require('standard-error');
 var db = require('../../config/sequelize');
 
 /**
@@ -33,7 +34,7 @@ exports.create = function(req, res) {
     // save and return and instance of article on the res object. 
     db.Article.create(req.body).then(function(article){
         if(!article){
-            return res.send('users/signup', {errors: err});
+            return res.send('users/signup', {errors: new StandardError('Article could not be created')});
         } else {
             return res.jsonp(article);
         }
@@ -111,7 +112,7 @@ exports.all = function(req, res) {
  * Article authorizations routing middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-    if (req.article.User.id != req.user.id) {
+    if (req.article.User.id !== req.user.id) {
       return res.send(401, 'User is not authorized');
     }
     next();

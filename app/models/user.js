@@ -32,7 +32,9 @@ module.exports = function(sequelize, DataTypes) {
 					return this.encryptPassword(plainText, this.salt) === this.hashedPassword;
 				},
 				encryptPassword: function(password, salt) {
-					if (!password || !salt) return '';
+					if (!password || !salt) {
+                        return '';
+                    }
 					salt = new Buffer(salt, 'base64');
 					return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
 				}

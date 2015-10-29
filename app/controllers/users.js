@@ -50,7 +50,7 @@ exports.session = function(req, res) {
 /**
  * Create user
  */
-exports.create = function(req, res) {
+exports.create = function(req, res, next) {
     var message = null;
 
     var user = db.User.build(req.body);
@@ -62,7 +62,9 @@ exports.create = function(req, res) {
     
     user.save().then(function(){
       req.login(user, function(err){
-        if(err) return next(err);
+        if(err) {
+            return next(err);
+        }
         res.redirect('/');
       });
     }).catch(function(err){
@@ -84,8 +86,10 @@ exports.me = function(req, res) {
  * Find user by id
  */
 exports.user = function(req, res, next, id) {
-    User.find({where : { id: id }}).then(function(user){
-      if (!user) return next(new Error('Failed to load User ' + id));
+    db.User.find({where : { id: id }}).then(function(user){
+      if (!user) {
+          return next(new Error('Failed to load User ' + id));
+      }
       req.profile = user;
       next();
     }).catch(function(err){
@@ -98,7 +102,7 @@ exports.user = function(req, res, next, id) {
  */
 exports.requiresLogin = function(req, res, next) {
     if (!req.isAuthenticated()) {
-        return res.send(401, 'User is not authorized');
+        return res.status(401).send('User is not authorized');
     }
     next();
 };
@@ -107,8 +111,8 @@ exports.requiresLogin = function(req, res, next) {
  * User authorizations routing middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-    if (req.profile.id != req.user.id) {
-      return res.send(401, 'User is not authorized');
+    if (req.profile.id !== req.user.id) {
+      return res.status(401).send('User is not authorized');
     }
     next();
 };
