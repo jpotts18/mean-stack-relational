@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = {
+{
     // This is your MYSQL Database configuration
     db: {
         name: "mean_relational",
@@ -10,26 +8,21 @@ module.exports = {
         port:3306
     },
     app: {
-        name: "MEAN - A Modern Stack - Production"
+        name: "M*EAN Stack Relational - Production"
     },
+    // You will need to get your own client id's before this will work properly
     facebook: {
-        clientID: "APP_ID",
-        clientSecret: "APP_SECRET",
+        clientID: "<CLIENT ID>",
+        clientSecret: "<CLIENT SECRET>",
         callbackURL: "http://localhost:3000/auth/facebook/callback"
     },
     twitter: {
-        clientID: "CONSUMER_KEY",
-        clientSecret: "CONSUMER_SECRET",
+        clientID: "<CLIENT ID>",
+        clientSecret: "<CLIENT SECRET>",
         callbackURL: "http://localhost:3000/auth/twitter/callback"
     },
-    github: {
-        clientID: "APP_ID",
-        clientSecret: "APP_SECRET",
-        callbackURL: "http://localhost:3000/auth/github/callback"
-    },
     google: {
-        clientID: "APP_ID",
-        clientSecret: "APP_SECRET",
+        realm: "http://localhost:3000/",
         callbackURL: "http://localhost:3000/auth/google/callback"
     }
-};
+}
