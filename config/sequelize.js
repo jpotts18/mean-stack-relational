@@ -17,7 +17,7 @@ var sequelize = new Sequelize(config.db.name, config.db.username, config.db.pass
   port: config.db.port,
   dialect: 'mysql',
   storage: config.db.storage,
-  logging: config.enableSequelizeLog ? winston.verbose : false
+  logging: config.enableSequelizeLog === 'true' ? winston.verbose : false
 });
 
 // loop through all files in models directory ignoring hidden files and this file
@@ -42,9 +42,9 @@ Object.keys(db).forEach(function(modelName) {
 // Synchronizing any model changes with database. 
 // WARNING: this will DROP your database everytime you re-run your application
 sequelize
-  .sync({force: config.forceSequelizeSync, logging:config.enableSequelizeLog ? winston.verbose : false})
+  .sync({force: config.FORCE_DB_SYNC==='true', logging:config.enableSequelizeLog==='true' ? winston.verbose : false})
   .then(function(){
-        winston.info("Database "+(config.forceSequelizeSync?"*DROPPED* and ":"")+ "synchronized");
+        winston.info("Database "+(config.FORCE_DB_SYNC==='true'?"*DROPPED* and ":"")+ "synchronized");
     }).catch(function(err){
         winston.error("An error occured: %j",err);
     });

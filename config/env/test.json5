@@ -1,16 +1,15 @@
-'use strict';
-
-module.exports = {
-    // This is your MYSQL Database configuration
+{
+    PORT: 3001,
     db: {
-        name: "mean_relational",
+        description: "This is your MYSQL test database configuration",
+        name: "mean_relational_test",
         password: "",
         username: "root",
-        host:"localhost",
-        port:3306
+        host: "localhost",
+        port: 3306
     },
     app: {
-        name: "M*EAN Stack - Development"
+        name: "M*EAN Stack Relational - Test"
     },
     // You will need to get your own client id's before this will work properly
     facebook: {

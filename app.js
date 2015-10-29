@@ -12,9 +12,10 @@ var fs          = require('fs');
  */
 
 // Load Configurations
-
-var env             = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var config          = require('./config/config');
+var winston         = require('./config/winston');
+winston.info('Config:',config);
+
 var db              = require('./config/sequelize');
 var passport        = require('./config/passport');
 var winston         = require('./config/winston');
@@ -25,9 +26,8 @@ var app = express();
 require('./config/express')(app, passport);
 
 //Start the app by listening on <port>
-var port = process.env.PORT || config.port;
-app.listen(port);
-winston.info('Express app started on port ' + port);
+app.listen(config.PORT);
+winston.info('Express app started on port ' + config.PORT);
 
 //expose app
 exports = module.exports = app;
