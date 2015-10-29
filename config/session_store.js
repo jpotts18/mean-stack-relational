@@ -1,3 +1,4 @@
+'use strict';
 
 var MysqlStore = require('express-mysql-session');
 var config = require('./config');

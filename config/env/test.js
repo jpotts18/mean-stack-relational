@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
     port: 3001,
     // This is your MYSQL Database configuration

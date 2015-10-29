@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
     // This is your MYSQL Database configuration
     db: {

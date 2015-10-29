@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Created by Junaid Anwar on 5/28/15.
  */
