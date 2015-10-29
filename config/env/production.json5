@@ -1,6 +1,6 @@
 {
+    // This is your MYSQL Database configuration
     db: {
-        description:"This is your MYSQL Database configuration",
         name: "mean_relational",
         password: "",
         username: "root",

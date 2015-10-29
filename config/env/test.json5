@@ -1,7 +1,7 @@
 {
     PORT: 3001,
+    // This is your MYSQL test database configuration
     db: {
-        description: "This is your MYSQL test database configuration",
         name: "mean_relational_test",
         password: "",
         username: "root",
