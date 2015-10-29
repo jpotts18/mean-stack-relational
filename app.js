@@ -13,12 +13,11 @@ var fs          = require('fs');
 
 // Load Configurations
 var config          = require('./config/config');
-var winston         = require('./config/winston');
-winston.info('Config:',config);
-
 var db              = require('./config/sequelize');
 var passport        = require('./config/passport');
 var winston         = require('./config/winston');
+
+winston.debug('Accepted Config:',config);
 
 var app = express();
 
