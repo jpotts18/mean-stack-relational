@@ -1,9 +1,10 @@
 {
   "name": "mean-stack-relational",
   "description": "M*EAN - A Modern Stack: MySQL, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
   "author": "Jeff Potter",
+  "license" : "MIT"
   "repository": {
     "type": "git",
     "url": "https://github.com/jpotts18/mean-stack-relational.git"
