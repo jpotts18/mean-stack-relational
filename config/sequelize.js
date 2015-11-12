@@ -40,13 +40,18 @@ Object.keys(db).forEach(function(modelName) {
 });
 
 // Synchronizing any model changes with database. 
-// WARNING: this will DROP your database everytime you re-run your application
+// set FORCE_DB_SYNC=true in the environment, or the program parameters to drop the database,
+//   and force model changes into it, if required;
+// Caution: Do not set FORCE_DB_SYNC to true for every run to avoid losing data with restarts
 sequelize
-  .sync({force: config.FORCE_DB_SYNC==='true', logging:config.enableSequelizeLog==='true' ? winston.verbose : false})
-  .then(function(){
-        winston.info("Database "+(config.FORCE_DB_SYNC==='true'?"*DROPPED* and ":"")+ "synchronized");
-    }).catch(function(err){
-        winston.error("An error occurred: ",err);
+    .sync({
+      force: config.FORCE_DB_SYNC === 'true',
+      logging: config.enableSequelizeLog === 'true' ? winston.verbose : false
+    })
+    .then(function () {
+      winston.info("Database " + (config.FORCE_DB_SYNC === 'true' ? "*DROPPED* and " : "") + "synchronized");
+    }).catch(function (err) {
+      winston.error("An error occurred: ", err);
     });
  
 // assign the sequelize variables to the db object and returning the db. 

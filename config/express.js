@@ -6,16 +6,16 @@
 var express = require('express');
 var flash = require('connect-flash');
 var helpers = require('view-helpers');
-var config = require('./config');
 var compression = require('compression');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var sessionMiddleware = require('./middlewares/session');
-var winston = require('./winston');
 var path = require('path');
+var sessionMiddleware = require('./middlewares/session');
+var config = require('./config');
+var winston = require('./winston');
 
 module.exports = function(app, passport) {
 
@@ -39,7 +39,7 @@ module.exports = function(app, passport) {
     app.use(express.static(config.root + '/public'));
 
     //Don't use logger for test env
-    if (process.env.NODE_ENV !== 'test') {
+    if (config.NODE_ENV !== 'test') {
         app.use(logger('dev', { "stream": winston.stream }));
     }
 
@@ -76,13 +76,17 @@ module.exports = function(app, passport) {
       require(path.resolve(routePath))(app);
     });
 
-    //Assume "not found" in the error msgs is a 404. this is somewhat silly, but valid, you can do whatever you like, set properties, use instanceof etc.
+    app.use('*',function(req, res){
+        res.status(404).render('404', {
+            url: req.originalUrl,
+            error: 'Not found'
+        });
+    });
+
     app.use(function(err, req, res, next) {
-        //Treat as 404
-        if (~err.message.indexOf('not found')) return next();
 
         //Log it
-        console.error(err.stack);
+        winston.error(err);
 
         //Error page
         res.status(500).render('500', {
@@ -90,11 +94,4 @@ module.exports = function(app, passport) {
         });
     });
 
-    //Assume 404 since no middleware responded
-    app.use(function(err, req, res, next) {
-        res.status(404).render('404', {
-            url: req.originalUrl,
-            error: 'Not found'
-        });
-    });
 };
