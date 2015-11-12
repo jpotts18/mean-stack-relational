@@ -46,7 +46,7 @@ sequelize
   .then(function(){
         winston.info("Database "+(config.FORCE_DB_SYNC==='true'?"*DROPPED* and ":"")+ "synchronized");
     }).catch(function(err){
-        winston.error("An error occured: %j",err);
+        winston.error("An error occurred: ",err);
     });
  
 // assign the sequelize variables to the db object and returning the db. 
