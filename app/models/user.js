@@ -25,6 +25,12 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		{
 			instanceMethods: {
+				toJSON: function () {
+					var values = this.get();
+					delete values.hashedPassword;
+					delete values.salt;
+					return values;
+				},
 				makeSalt: function() {
 					return crypto.randomBytes(16).toString('base64'); 
 				},
