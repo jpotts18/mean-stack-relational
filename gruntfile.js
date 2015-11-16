@@ -12,7 +12,7 @@ module.exports = function(grunt) {
                 },
             },
             js: {
-                files: ['public/js/**', 'app/**/*.js'],
+                files: ['public/js/**', 'app/**/*.js', 'config/**/*.js'],
                 tasks: ['jshint'],
                 options: {
                     livereload: true,
@@ -84,10 +84,11 @@ module.exports = function(grunt) {
             dev: {
                 script: 'app.js',
                 options: {
+                    args: ['--color'],
                     ignore: ['README.md', 'node_modules/**', '.DS_Store'],
                     ext: 'js',
-                    watch: ['app', 'config'],
-                    delayTime: 1,
+                    watch: ['app', 'config', 'app.js', 'gruntfile.js'],
+                    delay: 1000,
                     env: {
                         PORT: 3000
                     },
@@ -119,13 +120,13 @@ module.exports = function(grunt) {
         }
     });
 
-    //Load NPM tasks 
+    //Load NPM tasks
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-nodemon');
+    grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-karma');
-    grunt.loadNpmTasks('grunt-nodemon');
-    grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-env');
     grunt.loadNpmTasks('grunt-copy');
 
