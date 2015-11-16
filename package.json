@@ -29,7 +29,7 @@
     "express-mysql-session": "^0.4.1",
     "express-session": "1.10.4",
     "forever": "latest",
-    "glob": "~4.0.5",
+    "glob": "^6.0.1",
     "grunt": "latest",
     "grunt-cli": "latest",
     "grunt-copy": "latest",
