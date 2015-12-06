@@ -2,12 +2,12 @@
     <span>{{article.updatedAt | date:'medium'}}</span>/
     <span>{{article.user.name}}</span>
     <h2>{{article.title}}</h2>
-    <div data-ng-show="global.user.id == article.user.id">
+    <div data-ng-show="global.user.id == article.User.id">
         <a class="btn" href="/#!/articles/{{article.id}}/edit">
-        	<i class="icon-edit"></i>
+        	Edit
         </a> 
         <a class="btn" data-ng-click="remove();">
-            <i class="icon-trash"></i>
+            Delete
         </a>
     </div>
     <div>{{article.content}}</div>
