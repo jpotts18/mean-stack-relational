@@ -1,0 +1,16 @@
+{
+    "name": "mean-stack-relational",
+    "description": "M*EAN - A Modern Stack: MySQL(Postgres for Heroku), ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).",
+    "repository": "https://github.com/jpotts18/mean-stack-relational.git",
+    "logo": "https://mean-stack-relational.herokuapp.com/node.png",
+    "keywords": ["node", "express", "static"],
+    "env": {
+        "WEB_CONCURRENCY": {
+            "description": "The number of processes to run.",
+            "value": "1"
+        }
+    },
+    "addons": [
+        "heroku-postgresql:hobby-dev"
+    ]
+}
