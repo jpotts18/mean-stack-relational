@@ -12,6 +12,7 @@ The MongoDB ORM, [Mongoose](http://mongoosejs.com/), has been replaced with [Seq
 # Demo
 
 Deploy to your Heroku account for a demo:
+
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 # Getting Started
