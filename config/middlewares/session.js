@@ -1,13 +1,15 @@
 'use strict';
 
-var session = require('express-session'),
-    config = require('./../config'),
-    sessionStore = require('./../session_store');
+var config = require('./../config'),
+    session = require('express-session'),
+    db = require('./../sequelize') ;
+
+var sequelizeStore = require('express-sequelize-session')(session.Store);
 
 var sessionMiddleware = session({
     resave: true,
     saveUninitialized: true,
-    store: sessionStore,
+    store: new sequelizeStore(db.sequelize),
     cookie:{maxAge:1000*3600*24*7}, //remember for 7 days
     secret: config.expressSessionSecret/*||'$uper$ecret$e$$ionKey'*/
 });
