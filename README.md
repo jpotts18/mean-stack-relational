@@ -15,6 +15,8 @@ Deploy to your Heroku account for a demo:
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
+Note: Deploy from main repository view to avoid missing app.json error.
+
 # Getting Started
 
 Alright now the fun begins. First clone or download the repo to your computer. 
