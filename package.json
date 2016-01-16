@@ -1,7 +1,7 @@
 {
   "name": "mean-stack-relational",
-  "description": "M*EAN - A Modern Stack: MySQL, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).",
-  "version": "0.2.0",
+  "description": "M*EAN - A Modern Stack: MySQL(Postgres for Heroku), ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).",
+  "version": "0.2.2",
   "private": false,
   "author": "Jeff Potter",
   "license": "MIT",
@@ -10,13 +10,13 @@
     "url": "https://github.com/jpotts18/mean-stack-relational.git"
   },
   "engines": {
-    "node": "0.10.x",
-    "npm": "1.2.x"
+    "node": "4.2.x",
+    "npm": "2.14.x"
   },
   "scripts": {
     "start": "node node_modules/grunt-cli/bin/grunt",
     "test": "node node_modules/grunt-cli/bin/grunt test",
-    "postinstall": "bower install && cp config/env/production.json5.sample config/env/production.json5 && node node_modules/grunt-cli/bin/grunt copy"
+    "postinstall": "bower install && cp config/env/development.json5.sample config/env/development.json5 && cp config/env/production.json5.sample config/env/production.json5 && node node_modules/grunt-cli/bin/grunt copy"
   },
   "dependencies": {
     "async": "latest",
