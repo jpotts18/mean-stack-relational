@@ -13,7 +13,7 @@ var db = require('../../config/sequelize');
  */
 exports.article = function(req, res, next, id) {
     console.log('id => ' + id);
-    db.Article.find({ where: {id: id}, include: [db.User]}).then(function(article){
+    db.Article.find({where: {id: id}, include: [{model:db.User, attributes:['id', 'username', 'name']}]}).then(function(article){
         if(!article) {
             return next(new Error('Failed to load article ' + id));
         } else {
@@ -98,7 +98,7 @@ exports.show = function(req, res) {
  * List of Articles
  */
 exports.all = function(req, res) {
-    db.Article.findAll({include: [db.User]}).then(function(articles){
+    db.Article.findAll({include: [{model:db.User, attributes: ['id', 'username', 'name']}]}).then(function(articles){
         return res.jsonp(articles);
     }).catch(function(err){
         return res.render('error', {
