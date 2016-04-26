@@ -24,7 +24,7 @@ Alright now the fun begins. First clone or download the repo to your computer.
 1. Clone the repository ```git clone git@github.com:jpotts18/mean-stack-relational.git```.
 1. Go into the repository ```cd mean-stack-relational/```.
 1. Install dependencies with NPM ```npm install```. This will copy development.json5, and production.json5 from respective sample files in the config/env folder and run the grunt copy task to copy frontend lib files to their destination.
-1. Plug in your private and public keys for working with FB and Twitter into ```/config/env/development.json5``` and/or ```/config/env/development.json5```.
+1. Plug in your private and public keys for working with FB and Twitter into ```/config/env/development.json5``` and/or ```/config/env/production.json5```.
 1. Wire up the database connection found in ```/config/env/development.json5``` and/or ```/config/env/production.json5```.
 1. Run in production mode with: ```pm2 start pm2-ecosystem.json --env production``` (Run ```sudo npm install -g pm2``` if it's not installed.), or
 1. Run in development mode with grunt: ```grunt```
