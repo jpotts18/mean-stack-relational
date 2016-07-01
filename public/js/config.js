@@ -1,26 +1,33 @@
 //Setting up route
-angular.module('mean').config(['$routeProvider',
-    function($routeProvider) {
-        $routeProvider.
-        when('/articles', {
-            templateUrl: 'views/articles/list.html'
-        }).
-        when('/articles/create', {
-            templateUrl: 'views/articles/create.html'
-        }).
-        when('/articles/:articleId/edit', {
-            templateUrl: 'views/articles/edit.html'
-        }).
-        when('/articles/:articleId', {
-            templateUrl: 'views/articles/view.html'
-        }).
-        when('/', {
+angular.module('mean').config(['$stateProvider','$urlRouterProvider', function($stateProvider,$urlRouterProvider) {
+
+    $urlRouterProvider.otherwise('/');
+    $stateProvider
+        .state('home',{
+            url : '/',
             templateUrl: 'views/index.html'
-        }).
-        otherwise({
-            redirectTo: '/'
-        });
-    }
+        })
+        .state('articles',{
+            url : '/articles',
+            templateUrl: 'views/articles/list.html'
+        })
+        .state('createArticle',{
+            url : '/articles/create',
+            templateUrl: 'views/articles/create.html'
+        })
+        .state('editArticles',{
+            url : '/articles/:articleId/edit',
+            templateUrl: 'views/articles/edit.html'
+        })
+        .state('viewArticles',{
+            url : '/articles/:articleId',
+            templateUrl: 'views/articles/view.html'
+        })
+        .state("otherwise",{
+            url : '/',
+            templateUrl: 'views/index.html'
+        })
+}
 ]);
 
 //Setting HTML5 Location Mode

@@ -1,4 +1,4 @@
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', 'Global', 'Articles', function ($scope, $routeParams, $location, Global, Articles) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Global', 'Articles', function ($scope, $stateParams, $location, Global, Articles) {
     $scope.global = Global;
 
     $scope.create = function() {
@@ -8,7 +8,6 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
         });
 
         article.$save(function(response) {
-            console.log(response);
             $location.path("articles/" + response.id);
         });
 
@@ -52,7 +51,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 
     $scope.findOne = function() {
         Articles.get({
-            articleId: $routeParams.articleId
+            articleId: $stateParams.articleId
         }, function(article) {
             $scope.article = article;
         });
