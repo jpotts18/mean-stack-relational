@@ -1,10 +1,10 @@
 <div class="navbar-inner" data-ng-controller="HeaderController">
     <ul class="nav">
         <li>
-            <a class="brand" href="/">MEAN - A Modern Stack</a>
+            <a class="brand" ui-sref="home">MEAN - A Modern Stack</a>
         </li>
         <li data-ng-repeat="item in menu" data-ng-show="global.user" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
-            <a href="#!/{{item.link}}">{{item.title}}</a>
+            <a ui-sref="{{item.state}}">{{item.title}}</a>
         </li>
     </ul>
     <ul class="nav pull-right" data-ng-hide="global.authenticated">

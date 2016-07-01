@@ -5,27 +5,28 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider', function($
     $stateProvider
         .state('home',{
             url : '/',
+            controller : 'IndexController',
             templateUrl: 'views/index.html'
         })
         .state('articles',{
             url : '/articles',
+            controller : 'ArticlesController',
             templateUrl: 'views/articles/list.html'
         })
         .state('createArticle',{
             url : '/articles/create',
+            controller : 'ArticlesController',
             templateUrl: 'views/articles/create.html'
         })
         .state('editArticles',{
-            url : '/articles/:articleId/edit',
+            url : '/articles/{articleId}/edit',
+            controller : 'ArticlesController',
             templateUrl: 'views/articles/edit.html'
         })
-        .state('viewArticles',{
-            url : '/articles/:articleId',
+        .state('viewArticle',{
+            url : '/articles/{articleId}',
+            controller : 'ArticlesController',
             templateUrl: 'views/articles/view.html'
-        })
-        .state("otherwise",{
-            url : '/',
-            templateUrl: 'views/index.html'
         })
 }
 ]);

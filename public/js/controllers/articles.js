@@ -1,4 +1,4 @@
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Global', 'Articles', function ($scope, $stateParams, $location, Global, Articles) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$stateParams', 'Global', 'Articles', '$state', function ($scope, $stateParams, Global, Articles, $state) {
     $scope.global = Global;
 
     $scope.create = function() {
@@ -8,7 +8,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
         });
 
         article.$save(function(response) {
-            $location.path("articles/" + response.id);
+            $state.go('viewArticle',{articleId : response.id})
         });
 
         this.title = "";
@@ -27,7 +27,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
         }
         else {
             $scope.article.$remove();
-            $location.path('articles');
+            $state.go('articles');
         }
     };
 
@@ -37,9 +37,9 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
             article.updated = [];
         }
         article.updated.push(new Date().getTime());
-
         article.$update(function() {
-            $location.path('articles/' + article.id);
+        $state.go('viewArticle',{articleId : article.id})
+
         });
     };
 
