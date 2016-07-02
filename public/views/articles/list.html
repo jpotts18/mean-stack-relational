@@ -2,7 +2,7 @@
 	<ul class="articles unstyled">
 		<li data-ng-repeat="article in articles">
 			<span>{{article.updatedAt | date:'medium'}}</span> /
-			<span>{{article.user.name}}</span>
+			<span>{{article.User.name}}</span>
 			<h2><a ui-sref="viewArticle({articleId : article.id})">{{article.title}}</a></h2>
 			<div>{{article.content}}</div>
 		</li>

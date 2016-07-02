@@ -76,6 +76,10 @@ module.exports = function(app, passport) {
       require(path.resolve(routePath))(app);
     });
 
+    app.get('*',  function (req, res, next) {
+            res.render('index');
+    });
+
     app.use('*',function(req, res){
         res.status(404).render('404', {
             url: req.originalUrl,

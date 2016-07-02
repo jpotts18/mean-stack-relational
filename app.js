@@ -32,4 +32,4 @@ app.listen(config.PORT);
 winston.info('Express app started on port ' + config.PORT);
 
 //expose app
-exports = module.exports = app;
+module.exports = app;

@@ -1,0 +1,28 @@
+{
+  "apps" : [{
+    // mean-stack-relational app
+    "name"       : "msr",
+    "script"     : "app.js",
+    // by default, the app runs in fork mode, uncomment below to run in cluster mode
+    //"instances"  : 4,
+    //"exec_mode"  : "cluster_mode",  // defaults to fork
+    "args"        : ["--color"],
+    "watch"       : true,
+    "ignore_watch" : ["pids", "logs", "node_modules", "bower_components"],
+    "merge_logs"  : true, // merge logs from all instances in cluster mode
+    "cwd"         : ".",
+    "error_file"  : "./logs/msr.log",
+    "out_file"    : "./logs/msr.log",
+    "pid_file"    : "./pids/msr.pid",
+    "min_uptime"  : "30s", // defaults to 1000s
+    "max_restarts"  : 30, // defaults to 15
+    "restart_delay" : 1000,
+    "max_memory_restart" : "8G",  // restart app if it reaches an 8GB memory footprint
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "env_production" : {
+      "NODE_ENV": "production"
+    }
+  }]
+}

@@ -1,7 +1,7 @@
 {
   "name": "mean-stack-relational",
-  "description": "M*EAN - A Modern Stack: MySQL, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).",
-  "version": "0.2.0",
+  "description": "M*EAN - A Modern Stack: MySQL(Postgres for Heroku), ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).",
+  "version": "0.2.2",
   "private": false,
   "author": "Jeff Potter",
   "license": "MIT",
@@ -10,29 +10,27 @@
     "url": "https://github.com/jpotts18/mean-stack-relational.git"
   },
   "engines": {
-    "node": "0.10.x",
-    "npm": "1.2.x"
+    "node": "4.2.x",
+    "npm": "2.14.x"
   },
   "scripts": {
     "start": "node node_modules/grunt-cli/bin/grunt",
     "test": "node node_modules/grunt-cli/bin/grunt test",
-    "postinstall": "bower install"
+    "postinstall": "bower install && cp config/env/development.json5.sample config/env/development.json5 && cp config/env/production.json5.sample config/env/production.json5 && node node_modules/grunt-cli/bin/grunt copy"
   },
   "dependencies": {
     "async": "latest",
-    "bluebird": "^3.0.6",
     "body-parser": "^1.14.1",
     "bower": "latest",
     "compression": "^1.6.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.0",
     "express": "^4.13.3",
-    "express-mysql-session": "^0.4.3",
+    "express-sequelize-session": "^0.4.0",
     "express-session": "^1.12.1",
-    "forever": "latest",
     "glob": "^6.0.1",
-    "grunt": "latest",
-    "grunt-cli": "latest",
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
     "grunt-copy": "latest",
     "grunt-env": "latest",
     "jade": "^1.11.0",
@@ -48,6 +46,8 @@
     "passport-google": "latest",
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.3",
+    "pg": "^4.4.3",
+    "pm2": "^1.0.0",
     "proxyquire": "^1.7.3",
     "sequelize": "^3.13.0",
     "serve-favicon": "^2.3.0",
