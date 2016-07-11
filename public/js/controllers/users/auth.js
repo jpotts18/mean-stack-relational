@@ -1,4 +1,4 @@
-angular.module('mean.system').controller('socialAuth', ['$scope', 'Global','$state', 'FacebookAuth','TwitterAuth', 'GoogleAuth', function ($scope, Global, $state, FacebookAuth, TwitterAuth, GoogleAuth) {
+angular.module('mean.auth').controller('socialAuth', ['$scope', 'Global','$state', 'FacebookAuth','TwitterAuth', 'GoogleAuth', function ($scope, Global, $state, FacebookAuth, TwitterAuth, GoogleAuth) {
     $scope.global = Global;
 
     $scope.menu = [{
@@ -13,15 +13,15 @@ angular.module('mean.system').controller('socialAuth', ['$scope', 'Global','$sta
 
     $scope.fbAuth = function(){
         // implement your Facebook login strategy here.
-       // FacebookAuth.get();
+        // FacebookAuth.get();
     }
     $scope.twitterAuth = function(){
         // implement your Twitter login strategy here.
-       // TwitterAuth.get();
+        // TwitterAuth.get();
     }
     $scope.googleAuth = function(){
         // implement your Google login strategy here.
-       // GoogleAuth.get();
+        // GoogleAuth.get();
     }
 
 

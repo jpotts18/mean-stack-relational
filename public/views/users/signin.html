@@ -1,19 +1,19 @@
 
-<span ng-include="'../views/auth.html'"></span>
-<span>
-    <form action="/users/session" method="post" class="signin form-horizontal">
+<span ng-include="'../views/users/auth.html'"></span>
+<span ng-controller="signIn">
+    <form ng-submit="signIn(user)" class="signin form-horizontal" name="signInForm">
         <div class="control-group">
             <label for="email" class="control-label">Email</label>
 
             <div class="controls">
-                <input id="email" type="text" name="email" placeholder="Email" required>
+                <input id="email" type="text" name="email" placeholder="Email" ng-model="user.email" required>
             </div>
         </div>
         <div class="control-group">
             <label for="password" class="control-label">Password</label>
 
             <div class="controls">
-                <input id="password" type="password" name="password" placeholder="Password" required>
+                <input id="password" type="password" name="password" placeholder="Password" ng-model="user.password" required>
             </div>
         </div>
         <div class="form-actions">

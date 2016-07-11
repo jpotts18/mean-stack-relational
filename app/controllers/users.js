@@ -44,7 +44,8 @@ exports.signout = function(req, res) {
  * Session
  */
 exports.session = function(req, res) {
-    res.redirect('/');
+    return res.send({status : 'success', message : 'User login successfully.'})
+   // res.redirect('/');
 };
 
 /**
@@ -65,7 +66,8 @@ exports.create = function(req, res, next) {
         if(err) {
             return next(err);
         }
-        res.redirect('/');
+          return res.send({status : 'success', message : 'User signup successfully.'})
+       // res.redirect('/');
       });
     }).catch(function(err){
       res.render('users/signup',{

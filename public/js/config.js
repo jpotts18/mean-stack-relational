@@ -14,11 +14,11 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider', function($
         })
         .state('SignIn',{
             url : '/signin',
-            templateUrl: 'views/signin.html'
+            templateUrl: 'views/users/signin.html'
         })
         .state('SignUp',{
             url : '/signup',
-            templateUrl: 'views/signup.html'
+            templateUrl: 'views/users/signup.html'
         })
         .state('articles',{
             url : '/articles',
