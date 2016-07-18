@@ -1,0 +1,32 @@
+<div ng-include="'../views/users/auth.html'"></div>
+<div ng-controller="signUp">
+    <form ng-submit="signUp(user)"  class="signup form-horizontal">
+        <div class="control-group">
+            <label for="name" class="control-label">Full name</label>
+            <div class="controls">
+                <input id="name" type="text" name="name" placeholder="Full name" ng-model="user.name" required>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="email" class="control-label">Email</label>
+            <div class="controls">
+                <input id="email" type="text" name="email" placeholder="Email" ng-model="user.email" required>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="username" class="control-label">Username</label>
+            <div class="controls">
+                <input id="username" type="text" name="username" placeholder="Username" ng-model="user.userName" required>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="password" class="control-label">Password</label>
+            <div class="controls">
+                <input id="password" type="password" name="password" placeholder="Password" ng-model="user.password" required>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Sign up&nbsp;</button>or&nbsp;<a ui-sref="SignIn" class="show-login">login</a>
+        </div>
+    </form>
+</div>

@@ -10,8 +10,6 @@ module.exports = function(app) {
 var users = require('../../app/controllers/users');
 
 // User Routes
-app.get('/signin', users.signin);
-app.get('/signup', users.signup);
 app.get('/signout', users.signout);
 app.get('/users/me', users.me);
 

@@ -1,31 +1,53 @@
 //Setting up route
-angular.module('mean').config(['$routeProvider',
-    function($routeProvider) {
-        $routeProvider.
-        when('/articles', {
-            templateUrl: 'views/articles/list.html'
-        }).
-        when('/articles/create', {
-            templateUrl: 'views/articles/create.html'
-        }).
-        when('/articles/:articleId/edit', {
-            templateUrl: 'views/articles/edit.html'
-        }).
-        when('/articles/:articleId', {
-            templateUrl: 'views/articles/view.html'
-        }).
-        when('/', {
+angular.module('mean').config(['$stateProvider','$urlRouterProvider', function($stateProvider,$urlRouterProvider) {
+
+    $urlRouterProvider.otherwise(function($injector, $location){
+        $injector.invoke(['$state', function($state) {
+            $state.go('404');
+        }]);
+    });
+    $stateProvider
+        .state('home',{
+            url : '/',
+            controller : 'IndexController',
             templateUrl: 'views/index.html'
-        }).
-        otherwise({
-            redirectTo: '/'
-        });
-    }
+        })
+        .state('SignIn',{
+            url : '/signin',
+            templateUrl: 'views/users/signin.html'
+        })
+        .state('SignUp',{
+            url : '/signup',
+            templateUrl: 'views/users/signup.html'
+        })
+        .state('articles',{
+            url : '/articles',
+            controller : 'ArticlesController',
+            templateUrl: 'views/articles/list.html'
+        })
+        .state('createArticle',{
+            url : '/articles/create',
+            controller : 'ArticlesController',
+            templateUrl: 'views/articles/create.html'
+        })
+        .state('editArticles',{
+            url : '/articles/{articleId}/edit',
+            controller : 'ArticlesController',
+            templateUrl: 'views/articles/edit.html'
+        })
+        .state('viewArticle',{
+            url : '/articles/{articleId}',
+            controller : 'ArticlesController',
+            templateUrl: 'views/articles/view.html'
+        })
+        .state('404',{
+            templateUrl: 'views/404.html'
+        })
+}
 ]);
 
 //Setting HTML5 Location Mode
-angular.module('mean').config(['$locationProvider',
-    function($locationProvider) {
-        $locationProvider.hashPrefix("!");
-    }
-]);
+angular.module('mean').config(['$locationProvider', function ($locationProvider) {
+    $locationProvider.html5Mode(true);
+
+}]);

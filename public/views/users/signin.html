@@ -1,0 +1,24 @@
+
+<span ng-include="'../views/users/auth.html'"></span>
+<span ng-controller="signIn">
+    <form ng-submit="signIn(user)" class="signin form-horizontal" name="signInForm">
+        <div class="control-group">
+            <label for="email" class="control-label">Email</label>
+
+            <div class="controls">
+                <input id="email" type="text" name="email" placeholder="Email" ng-model="user.email" required>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="password" class="control-label">Password</label>
+
+            <div class="controls">
+                <input id="password" type="password" name="password" placeholder="Password" ng-model="user.password" required>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Sign in&nbsp;</button>
+            or&nbsp;<a ui-sref="SignUp" class="show-signup">Sign up</a>
+        </div>
+    </form>
+</span>
