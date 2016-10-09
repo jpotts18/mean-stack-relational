@@ -1,7 +1,17 @@
 
-angular.module('mean.auth').service("FacebookAuth", ['$resource', function($resource) {
-    return $resource('/auth/facebook');
+angular.module('mean.auth').factory("SocialAuth", ['$http', function ($http) {
+    return {
+        FbLogin: function (token) {
+            return $http.post('/auth/facebook/token', {"access_token": token.accessToken})
+                .then(function (res) {
+                    return res;
+                });
+        }
+    }
 }]);
+
+
+
 angular.module('mean.auth').service("TwitterAuth", ['$resource', function($resource) {
     return $resource('/auth/twitter');
 }]);
