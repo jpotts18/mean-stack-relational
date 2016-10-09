@@ -76,6 +76,7 @@ module.exports = function(grunt) {
                     {cwd: 'bower_components/bootstrap/docs/assets/img',                  src: ['*.*'],    dest: 'public/lib/bootstrap/docs/assets/img', expand: true},
                     {cwd: 'bower_components/bootstrap/docs/assets/js',                   src: ['*.*'],    dest: 'public/lib/bootstrap/docs/assets/js', expand: true},
                     {cwd: 'bower_components/satellizer/dist',                            src: ['**/*.js'],    dest: 'public/lib/satellizer', expand: true},
+                    {cwd: 'bower_components/angular-fblogin/dist',                       src: ['**/*.js'],    dest: 'public/lib/social', expand: true},
                     {cwd: 'bower_components/jquery',                                     src: ['jquery*'], dest: 'public/lib/jquery', expand: true},
                     {cwd: 'bower_components/angular-ui-router',                          src: ['release/*.js'], dest: 'public/lib/angular-ui-router', expand: true}
 

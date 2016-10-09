@@ -1,4 +1,4 @@
-angular.module('mean.auth').controller('socialAuth', ['$scope', 'Global','$state', '$fblogin', 'SocialAuth','$window', function ($scope, Global, $state, $fblogin, SocialAuth, $window) {
+angular.module('mean.auth').controller('socialAuth', ['$scope', 'Global','$state', '$fblogin', 'SocialAuth','$window','$auth', function ($scope, Global, $state, $fblogin, SocialAuth, $window, $auth) {
     $scope.global = Global;
 
     $scope.menu = [{
@@ -13,14 +13,15 @@ angular.module('mean.auth').controller('socialAuth', ['$scope', 'Global','$state
 
     $scope.fbAuth = function(){
         $fblogin({
-            fbId: 102551953548872,
+            fbId: "102551953548872",
             permissions: 'email,user_birthday',
             fields: 'first_name,last_name,email,birthday,picture'
         }).then(function (data) {
+            console.log(data);
 
             SocialAuth.FbLogin(FB.getAuthResponse()).then(function (response) {
-
-                if(response.status === 'success'){
+        console.log(response);
+                if(response.status === 'success' || 200){
                     $window.location.href = '/';
                 }
             });
@@ -30,12 +31,26 @@ angular.module('mean.auth').controller('socialAuth', ['$scope', 'Global','$state
         })
     }
     $scope.twitterAuth = function(){
-        // implement your Twitter login strategy here.
-        // TwitterAuth.get();
+        $auth.authenticate('twitter').then(function(response) {
+
+            if(response.status === 'success' || 200){
+                $window.location.href = '/';
+            }
+
+            // Signed in with Google.
+        })
     }
+
     $scope.googleAuth = function(){
-        // implement your Google login strategy here.
-        // GoogleAuth.get();
+
+        $auth.authenticate('google').then(function(response) {
+
+            if(response.status === 'success' || 200){
+                $window.location.href = '/';
+            }
+
+            // Signed in with Google.
+        })
     }
 
 

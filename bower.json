@@ -11,6 +11,9 @@
     "angular-bootstrap": "0.7.0",
     "angular-ui-utils": "0.0.4",
     "angular-ui-router": "~0.3.1",
-    "satellizer": "^0.15.5"
+    "satellizer": "^0.15.5",
+    "bower": "*",
+    "install": "^1.0.4",
+    "angular-fblogin": "*"
   }
 }

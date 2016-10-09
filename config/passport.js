@@ -4,9 +4,6 @@ var passport = require('passport'),
     _ = require('lodash');
 // These are different types of authentication strategies that can be used with Passport. 
 var LocalStrategy = require('passport-local').Strategy,
-   TwitterStrategy = require('passport-twitter').Strategy,
-   FacebookStrategy = require('passport-facebook').Strategy,
-   GoogleStrategy = require('passport-google').Strategy,
    FacebookTokenStrategy = require('passport-facebook-token'),
    config = require('./config'),
    db = require('./sequelize'),
@@ -51,86 +48,18 @@ passport.use(new LocalStrategy({
   }
 ));
 
-//    Use twitter strategy
-passport.use(new TwitterStrategy({
-        consumerKey: config.twitter.clientID,
-        consumerSecret: config.twitter.clientSecret,
-        callbackURL: config.twitter.callbackURL
-    },
-    function(token, tokenSecret, profile, done) {
-        
-        db.User.find({where: {twitterUserId: profile.id}}).then(function(user){
-            if(!user){
-                db.User.create({
-                    twitterUserId: profile.id,
-                    name: profile.displayName,
-                    username: profile.username,
-                    provider: 'twitter'
-                }).then(function(u){
-                    winston.info('New User (twitter) : { id: ' + u.id + ', username: ' + u.username + ' }');
-                    done(null, u);
-                });
-            } else {
-                winston.info('Login (twitter) : { id: ' + user.id + ', username: ' + user.username + ' }');
-                done(null, user);
-            }
-        
-        }).catch(function(err){
-            done(err, null);
-        });
-    }
-));
-
-
-// Use facebook strategy
-//passport.use(new FacebookStrategy({
-//        clientID: config.facebook.clientID,
-//        clientSecret: config.facebook.clientSecret,
-//        callbackURL: config.facebook.callbackURL
-//    },
-//    function(accessToken, refreshToken, profile, done) {
-//
-//        db.User.find({where : {facebookUserId: profile.id}}).then(function(user){
-//            if(!user){
-//                db.User.create({
-//                    name: profile.displayName,
-//                    email: profile.emails[0].value,
-//                    username: profile.username,
-//                    provider: 'facebook',
-//                    facebookUserId: profile.id
-//                }).then(function(u){
-//                    winston.info('New User (facebook) : { id: ' + u.id + ', username: ' + u.username + ' }');
-//                    done(null, u);
-//                })
-//            } else {
-//                winston.info('Login (facebook) : { id: ' + user.id + ', username: ' + user.username + ' }');
-//                done(null, user);
-//            }
-//        }).catch(function(err){
-//            done(err, null);
-//        });
-//    }
-//));
-
-
 passport.use(new FacebookTokenStrategy({
-
-
-        clientID: '102551953548872', // client id
-        //clientID: socialConfig.facebook.clientID,// ahmed id
-        clientSecret: '91f046bfd3da770638ec4a0619c28c3d',
-        //clientSecret: socialConfig.facebook.clientSecret,
+        clientID: config.facebook.clientID,
+        clientSecret: config.facebook.clientSecret,
         profileFields: ['id', 'first_name', 'last_name', 'email', 'photos']
-        //}, Authenticate.authenticate(accessToken, refreshToken, profile, done)
-
     }, function (accessToken, refreshToken, profile, done) {
 
-        db.User.find({where : {facebookUserId: profile.id}}).then(function(user){
+        db.User.find({where : {email: profile.emails[0].value}}).then(function(user){
             if(!user){
                 db.User.create({
-                    name: profile.displayName,
+                    name: profile.name.givenName || '',
                     email: profile.emails[0].value,
-                    username: profile.username,
+                    username: profile.name.givenName || '',
                     provider: 'facebook',
                     facebookUserId: profile.id
                 }).then(function(u){
@@ -147,36 +76,6 @@ passport.use(new FacebookTokenStrategy({
 
     }
 
-));
-
-//Use google strategy
-passport.use(new GoogleStrategy({
-    returnURL: config.google.callbackURL,
-    realm: config.google.realm
-  },
-  function(identifier, profile, done) {
-    console.log(identifier);
-    console.log(profile);
-
-    db.User.find({where: {openId: identifier}}).then(function(user){
-        if(!user){
-            db.User.create({
-                name: profile.displayName,
-                email: profile.emails[0].value,
-                username: profile.displayName.replace(/ /g,''),
-                openId: identifier, 
-            }).then(function(u){
-                winston.info('New User (google) : { id: ' + u.id + ', username: ' + u.username + ' }');
-                done(null, u);
-            })
-        } else {
-            winston.info('Login (google) : { id: ' + user.id + ', username: ' + user.username + ' }');
-            done(null, user);
-        }
-    }).catch(function(err){
-        done(err, null);
-    });
-  }
 ));
 
 module.exports = passport;
