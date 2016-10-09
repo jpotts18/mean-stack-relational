@@ -32,6 +32,35 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
     failureRedirect: '/signin'
 }), users.authCallback);
 
+
+
+    app.post('/auth/facebook/token', function (req, res, next) {
+
+        passport.authenticate('facebook-token', {scope: ['email', 'user_about_me','phone']}, function (err, user, info) {
+
+            if (err) {
+                winston.error(err);
+                return res.send({status: "error", error: err});
+            }
+            if (!user) {
+                winston.error('User not found error in facebook login! Should not happen finally');
+                return res.send({status: "error", error: info});
+            }
+
+
+            req.login(user, function (err) {
+                if (err) {
+
+                    winston.error(err);
+                    return res.send({status: "error", error: {message: 'Login failed'}});
+                }
+                return res.send({status: "success", data: {user: user}});
+            });
+
+
+        })(req, res, next);
+    });
+
 // Setting the twitter oauth routes
 app.get('/auth/twitter', passport.authenticate('twitter', {
     failureRedirect: '/signin'

@@ -8,18 +8,16 @@ script(type='text/javascript', src='/lib/angular-ui-router/release/angular-ui-ro
 script(type='text/javascript', src='/lib/angular-bootstrap/ui-bootstrap.js')
 script(type='text/javascript', src='/lib/angular-bootstrap/ui-bootstrap-tpls.js')
 script(type='text/javascript', src='/lib/angular-ui-utils/modules/route/route.js')
-
+script(type='text/javascript', src='/lib/satellizer/satellizer.min.js')
 //Application Init
 script(type='text/javascript', src='/js/app.js')
 script(type='text/javascript', src='/js/config.js')
 script(type='text/javascript', src='/js/directives.js')
 script(type='text/javascript', src='/js/filters.js')
-
 //Application Services
 script(type='text/javascript', src='/js/services/global.js')
 script(type='text/javascript', src='/js/services/articles.js')
 script(type='text/javascript', src='/js/services/authenticate.js')
-
 //Application Controllers
 script(type='text/javascript', src='/js/controllers/articles.js')
 script(type='text/javascript', src='/js/controllers/index.js')
@@ -27,7 +25,7 @@ script(type='text/javascript', src='/js/controllers/header.js')
 script(type='text/javascript', src='/js/controllers/users/auth.js')
 script(type='text/javascript', src='/js/controllers/users/signIn.js')
 script(type='text/javascript', src='/js/controllers/users/signUp.js')
-script(type='text/javascript', src='/js/init.js')
+script(type='text/javascript', src='/js/FbSdk.js')
 
 if (process.env.NODE_ENV == 'development')
     //Livereload script rendered 

@@ -1,4 +1,4 @@
-angular.module('mean.auth').controller('socialAuth', ['$scope', 'Global','$state', 'FacebookAuth','TwitterAuth', 'GoogleAuth', function ($scope, Global, $state, FacebookAuth, TwitterAuth, GoogleAuth) {
+angular.module('mean.auth').controller('socialAuth', ['$scope', 'Global','$state', '$fblogin', 'SocialAuth','$window', function ($scope, Global, $state, $fblogin, SocialAuth, $window) {
     $scope.global = Global;
 
     $scope.menu = [{
@@ -12,8 +12,22 @@ angular.module('mean.auth').controller('socialAuth', ['$scope', 'Global','$state
     $scope.isCollapsed = false;
 
     $scope.fbAuth = function(){
-        // implement your Facebook login strategy here.
-        // FacebookAuth.get();
+        $fblogin({
+            fbId: 102551953548872,
+            permissions: 'email,user_birthday',
+            fields: 'first_name,last_name,email,birthday,picture'
+        }).then(function (data) {
+
+            SocialAuth.FbLogin(FB.getAuthResponse()).then(function (response) {
+
+                if(response.status === 'success'){
+                    $window.location.href = '/';
+                }
+            });
+
+        }).catch(function () {
+            $window.location.reload();
+        })
     }
     $scope.twitterAuth = function(){
         // implement your Twitter login strategy here.
