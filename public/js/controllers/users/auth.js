@@ -16,42 +16,32 @@ angular.module('mean.auth').controller('socialAuth', ['$scope', 'Global','$state
             fbId: "102551953548872",
             permissions: 'email,user_birthday',
             fields: 'first_name,last_name,email,birthday,picture'
-        }).then(function (data) {
-            console.log(data);
-
+        }).then(function () {
             SocialAuth.FbLogin(FB.getAuthResponse()).then(function (response) {
-        console.log(response);
                 if(response.status === 'success' || 200){
                     $window.location.href = '/';
                 }
             });
-
         }).catch(function () {
             $window.location.reload();
         })
-    }
+    };
     $scope.twitterAuth = function(){
         $auth.authenticate('twitter').then(function(response) {
-
             if(response.status === 'success' || 200){
                 $window.location.href = '/';
             }
-
-            // Signed in with Google.
-        })
-    }
+        });
+    };
 
     $scope.googleAuth = function(){
 
         $auth.authenticate('google').then(function(response) {
-
             if(response.status === 'success' || 200){
                 $window.location.href = '/';
             }
-
-            // Signed in with Google.
-        })
-    }
+        });
+    };
 
 
 }]);

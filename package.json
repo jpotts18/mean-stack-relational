@@ -53,7 +53,10 @@
     "serve-favicon": "^2.3.0",
     "standard-error": "^1.1.0",
     "view-helpers": "latest",
-    "winston": "latest"
+    "winston": "latest",
+    "request": "2.75.0",
+    "qs": "6.2.1",
+    "passport-facebook-token": "3.3.0"
   },
   "devDependencies": {
     "chai": "^3.2.0",

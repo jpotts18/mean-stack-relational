@@ -9,15 +9,6 @@ angular.module('mean.auth').factory("SocialAuth", ['$http', function ($http) {
         }
     }
 }]);
-
-
-
-angular.module('mean.auth').service("TwitterAuth", ['$resource', function($resource) {
-    return $resource('/auth/twitter');
-}]);
-angular.module('mean.auth').service("GoogleAuth", ['$resource', function($resource) {
-    return $resource('/auth/google');
-}]);
 angular.module('mean.auth').service("SignOut", ['$resource', function($resource) {
     return $resource('/signout');
 }]);
