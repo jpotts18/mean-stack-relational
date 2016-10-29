@@ -1,12 +1,13 @@
 
-angular.module('mean.auth').service("FacebookAuth", ['$resource', function($resource) {
-    return $resource('/auth/facebook');
-}]);
-angular.module('mean.auth').service("TwitterAuth", ['$resource', function($resource) {
-    return $resource('/auth/twitter');
-}]);
-angular.module('mean.auth').service("GoogleAuth", ['$resource', function($resource) {
-    return $resource('/auth/google');
+angular.module('mean.auth').factory("SocialAuth", ['$http', function ($http) {
+    return {
+        FbLogin: function (token) {
+            return $http.post('/auth/facebook/token', {"access_token": token.accessToken})
+                .then(function (res) {
+                    return res;
+                });
+        }
+    }
 }]);
 angular.module('mean.auth').service("SignOut", ['$resource', function($resource) {
     return $resource('/signout');

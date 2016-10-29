@@ -80,13 +80,6 @@ module.exports = function(app, passport) {
             res.render('index');
     });
 
-    app.use('*',function(req, res){
-        res.status(404).render('404', {
-            url: req.originalUrl,
-            error: 'Not found'
-        });
-    });
-
     app.use(function(err, req, res, next) {
 
         //Log it
