@@ -43,10 +43,15 @@ Thats all! Now go and open up your browser at [http://localhost:3000](http://loc
 - Bower - Web package manager, installing Bower is simple when you have npm:
 ``` npm install -g bower ```
 
+### Optional Tools
+
+- [Sequelize-cli](https://github.com/sequelize/cli) - The CLI for the Sequelize library enabling the ease of creating and applying migrations, models, and seeders. Install with
+``` npm install -g sequelize-cli ```, then init migrations and seeders with `sequelize init:migrations && sequelize init:seeders`. More info in the link or just run `sequelize` to see the usage.
+
 ### NPM Modules Used
 - [Passport](http://passportjs.org/) - Passport is authentication middleware for Node.js. Extremely flexible and modular, Passport can be unobtrusively dropped in to any Express-based web application. A comprehensive set of strategies support authentication using a username and password, Facebook, Twitter, and more. 
 - [Express](http://expressjs.com/) - Express is a minimal and flexible node.js web application framework, providing a robust set of features for building single and multi-page, and hybrid web applications.
-- [Sequelize](http://sequelizejs.com/) - The Sequelize library provides easy access to MySQL, MariaDB, SQLite or PostgreSQL databases by mapping database entries to objects and vice versa. To put it in a nutshell, it's an ORM (Object-Relational-Mapper). The library is written entirely in JavaScript and can be used in the Node.JS environment. 
+- [Sequelize](http://sequelizejs.com/) - The Sequelize library provides easy access to MySQL, MariaDB, SQLite or PostgreSQL databases by mapping database entries to objects and vice versa. To put it in a nutshell, it's an ORM (Object-Relational-Mapper). The library is written entirely in JavaScript and can be used in the Node.JS environment.   
 
 ### Javascript Tools Used
 - [Grunt](http://gruntjs.com/) - In one word: automation. The less work you have to do when performing repetitive tasks like minification, compilation, unit testing, linting, etc, the easier your job becomes. After you've configured it, a Grunt can do most of that mundane work for you—and your team—with basically zero effort.
